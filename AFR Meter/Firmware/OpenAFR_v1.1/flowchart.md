@@ -5,14 +5,14 @@ flowchart TD
   B --> B1[Init CAN pins, DAC, watchdog]
   B1 --> B2[Configure GPIO: NSS, LEDs, Heater PWM, CAN standby]
   B2 --> B3[Setup Timer0 PWM heater]
-  B3 --> B4[Setup Timer1 100ms interrupt com_flag]
+  B3 --> B4[Setup Timer1 100ms interrupt com_flag] --> TIMERINT
   B4 --> B5[Setup ADC]
   B5 --> B6[Set initial pin states LEDs, standby]
   B6 --> B7[Read battery at key-on v_batt_Mem]
   B7 --> B8[Heater PWM = 0]
   B8 --> B9{CAN.begin ok?}
   B9 -- No --> B9a[LED CAN error indicator]
-  B9 -- Yes --> B10[Register CAN receive callback]
+  B9 -- Yes --> B10[Register CAN receive callback] --> CANINT
   B9a --> B10
   B10 --> B11[Enable interrupts, reset WDT]
   B11 --> C[start]
@@ -84,7 +84,7 @@ flowchart TD
   K1 --> K2[Heater PWM = 0 PID takes over]
 
   K2 --> L[Set flags NORMAL on HEAT off]
-  L --> L1[sendCAN]
+  L --> L1[sendCAN] --> SENDCAN
   L1 --> M[Enter loop forever]
 
   %% ---- MAIN LOOP ----
@@ -96,7 +96,7 @@ flowchart TD
   O -- Yes --> O1[Heater PWM=0]
   O1 --> O2[Clear NORMAL set HEAT]
   O2 --> O3[start re-init]
-  O3 --> N
+  O3 --> C
   O -- No --> P[Set flags SENSOR=1 HEAT=0 NORMAL=1]
   P --> Q[Heater PI heater_control UR]
   Q --> Q1[setHeatLevel PWM]
@@ -114,7 +114,8 @@ flowchart TD
   X --> N
 
   %% ---- SEND CAN ----
-  subgraph SENDCAN[sendCAN]
+    subgraph SENDCAN[sendCAN]
+    direction TB
     SC1[CAN standby LOW] --> SC2[Try beginPacket up to MAX_RETRIES]
     SC2 --> SC3{beginPacket success?}
     SC3 -- Yes --> SC4[Write flags lambda afr temp v_batt]
@@ -123,11 +124,11 @@ flowchart TD
     SC6 --> SC2
     SC5 --> SC7[CAN standby HIGH]
     SC7 --> SC8[Clear STATUS_RECEIVE if set com_flag=0]
-  end
+    end
 
   %% ---- INTERRUPTS / CALLBACKS ----
-  subgraph INT[Interrupts and callbacks]
-    T1[Timer1 Compare ISR every 100ms] --> T2[com_flag = 1]
+  subgraph CANINT[CANBUS interrupts]
+  direction TB
     PR[CAN onReceive packetReceive] --> PR1{ID==0xFF AND size==2?}
     PR1 -- Yes --> PR2[Read 2 bytes flagEMU flagDebug]
     PR2 --> PR3{flagDebug==1?}
@@ -136,4 +137,10 @@ flowchart TD
     PR1 -- No --> PR6[Ignore packet]
   end
 
+
+ %% ---- INTERRUPTS / CALLBACKS ----
+  subgraph TIMERINT[Timer interrupt]
+  direction TB
+    T1[Timer1 Compare ISR every 100ms] --> T2[com_flag = 1]
+  end
 ```
