@@ -5,7 +5,7 @@ The controller:
 
 - Reads CJ125 analog outputs (**UA**, **UR**) via ADC
 - Regulates the sensor heater using **PI control**
-- Outputs an analog **0–1V (or 0-5V) emulation** using an **MCP4725 DAC**
+- Outputs an analog **0-1V (or 0-5V) emulation** using an **MCP4725 DAC**
 - Publishes live data over **CAN bus**
 - Supports **wideband** and **narrowband** analog emulation modes
 - Includes startup sequencing: power/sensor validation → CJ125 calibration → heater warmup → closed-loop control
