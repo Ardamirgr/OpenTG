@@ -1,4 +1,4 @@
-# OpenAFR Wideband Controller Firmware
+# OpenTG Wideband Controller Firmware
 
 Firmware for an AVR-based wideband oxygen sensor controller using the **Bosch CJ125** interface IC.  
 The controller:
@@ -44,7 +44,7 @@ See the EAGLE PCB files in the relevant folder.
 
 This sketch includes several project headers:
 
-- `OpenAFR.h`  
+- `OpenTG.h`  
   Status flag bit definitions, constants (e.g., `UBAT_MIN`, `UHEATER_*`), pin macros, CAN retry settings.
 - `lookup_tables.h`  
   Lookup tables for:
@@ -164,7 +164,7 @@ Analog output is produced by the MCP4725 DAC, scaled for a 0–1V or 0-5V range:
 
 ## Status Flags
 
-`status_flags` is an 8-bit bitfield defined in `OpenAFR.h`.  
+`status_flags` is an 8-bit bitfield defined in `OpenTG.h`.  
 Examples used in the code:
 
 - `STATUS_LOW_BAT`
@@ -198,7 +198,7 @@ This project is intended for an AVR Arduino-compatible environment.
    - **Adafruit MCP4725** library
    - **Make sure to use only the libraries that are provided in this repo.**
 
-2. Ensure your `OpenAFR.h` and `lookup_tables.h` are present and correct for your board and sensor wiring.
+2. Ensure your `OpenTG.h` and `lookup_tables.h` are present and correct for your board and sensor wiring.
 
 3. Compile and flash using Arduino IDE / PlatformIO. **You will need an Arduino or similar to act as an ICSP**.  
 
