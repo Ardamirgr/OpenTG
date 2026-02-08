@@ -4,6 +4,8 @@ Repository for the custom automotive gauge projects of **OpenTG** - originally e
 
 **OpenTG AFR** is the first project under the OpenTG name, with more modules planned.
 
+**If you'd like to donate:** https://www.paypal.com/donate/?hosted_button_id=CYKH5WKZKP4M2
+
 ---
 
 ## Projects
