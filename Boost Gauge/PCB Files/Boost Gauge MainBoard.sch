@@ -13945,91 +13945,6 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="MCT6SD">
-<description>&lt;Choice of 3 current transfer ratios; Two isolated channels per package; VDE approved for IEC60747-5-2; Two packages fit into a 16 lead DIP socket; Underwriters Laboratory (U.L.) recognized File E90700&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
-<packages>
-<package name="SOP254P1016X385-8N">
-<description>&lt;b&gt;MCT6SD&lt;/b&gt;&lt;br&gt;
-</description>
-<smd name="1" x="-4.55" y="3.81" dx="2.1" dy="1.5" layer="1"/>
-<smd name="2" x="-4.55" y="1.27" dx="2.1" dy="1.5" layer="1"/>
-<smd name="3" x="-4.55" y="-1.27" dx="2.1" dy="1.5" layer="1"/>
-<smd name="4" x="-4.55" y="-3.81" dx="2.1" dy="1.5" layer="1"/>
-<smd name="5" x="4.55" y="-3.81" dx="2.1" dy="1.5" layer="1"/>
-<smd name="6" x="4.55" y="-1.27" dx="2.1" dy="1.5" layer="1"/>
-<smd name="7" x="4.55" y="1.27" dx="2.1" dy="1.5" layer="1"/>
-<smd name="8" x="4.55" y="3.81" dx="2.1" dy="1.5" layer="1"/>
-<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
-<wire x1="-5.85" y1="5.34" x2="5.85" y2="5.34" width="0.05" layer="51"/>
-<wire x1="5.85" y1="5.34" x2="5.85" y2="-5.34" width="0.05" layer="51"/>
-<wire x1="5.85" y1="-5.34" x2="-5.85" y2="-5.34" width="0.05" layer="51"/>
-<wire x1="-5.85" y1="-5.34" x2="-5.85" y2="5.34" width="0.05" layer="51"/>
-<wire x1="-3.25" y1="4.84" x2="3.25" y2="4.84" width="0.1" layer="51"/>
-<wire x1="3.25" y1="4.84" x2="3.25" y2="-4.84" width="0.1" layer="51"/>
-<wire x1="3.25" y1="-4.84" x2="-3.25" y2="-4.84" width="0.1" layer="51"/>
-<wire x1="-3.25" y1="-4.84" x2="-3.25" y2="4.84" width="0.1" layer="51"/>
-<wire x1="-3.25" y1="2.3" x2="-0.71" y2="4.84" width="0.1" layer="51"/>
-<wire x1="-3.15" y1="4.84" x2="3.15" y2="4.84" width="0.2" layer="21"/>
-<wire x1="3.15" y1="4.84" x2="3.15" y2="-4.84" width="0.2" layer="21"/>
-<wire x1="3.15" y1="-4.84" x2="-3.15" y2="-4.84" width="0.2" layer="21"/>
-<wire x1="-3.15" y1="-4.84" x2="-3.15" y2="4.84" width="0.2" layer="21"/>
-<wire x1="-5.6" y1="4.91" x2="-3.5" y2="4.91" width="0.2" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="MCT6SD">
-<wire x1="5.08" y1="2.54" x2="38.1" y2="2.54" width="0.254" layer="94"/>
-<wire x1="38.1" y1="-10.16" x2="38.1" y2="2.54" width="0.254" layer="94"/>
-<wire x1="38.1" y1="-10.16" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="5.08" y1="2.54" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
-<text x="39.37" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
-<text x="39.37" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
-<pin name="ANODE_1" x="0" y="0" length="middle"/>
-<pin name="CATHODE_1" x="0" y="-2.54" length="middle"/>
-<pin name="CATHODE_2" x="0" y="-5.08" length="middle"/>
-<pin name="ANODE_2" x="0" y="-7.62" length="middle"/>
-<pin name="EMITTER_2" x="43.18" y="0" length="middle" rot="R180"/>
-<pin name="COLLECTOR_2" x="43.18" y="-2.54" length="middle" rot="R180"/>
-<pin name="COLLECTOR_1" x="43.18" y="-5.08" length="middle" rot="R180"/>
-<pin name="EMITTER_1" x="43.18" y="-7.62" length="middle" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="MCT6SD" prefix="IC">
-<description>&lt;b&gt;Choice of 3 current transfer ratios; Two isolated channels per package; VDE approved for IEC60747-5-2; Two packages fit into a 16 lead DIP socket; Underwriters Laboratory (U.L.) recognized File E90700&lt;/b&gt;&lt;p&gt;
-Source: &lt;a href="https://www.onsemi.com/pub/Collateral/MCT62-D.pdf"&gt; Datasheet &lt;/a&gt;</description>
-<gates>
-<gate name="G$1" symbol="MCT6SD" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SOP254P1016X385-8N">
-<connects>
-<connect gate="G$1" pin="ANODE_1" pad="1"/>
-<connect gate="G$1" pin="ANODE_2" pad="4"/>
-<connect gate="G$1" pin="CATHODE_1" pad="2"/>
-<connect gate="G$1" pin="CATHODE_2" pad="3"/>
-<connect gate="G$1" pin="COLLECTOR_1" pad="6"/>
-<connect gate="G$1" pin="COLLECTOR_2" pad="7"/>
-<connect gate="G$1" pin="EMITTER_1" pad="5"/>
-<connect gate="G$1" pin="EMITTER_2" pad="8"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value="Choice of 3 current transfer ratios; Two isolated channels per package; VDE approved for IEC60747-5-2; Two packages fit into a 16 lead DIP socket; Underwriters Laboratory (U.L.) recognized File E90700" constant="no"/>
-<attribute name="HEIGHT" value="3.85mm" constant="no"/>
-<attribute name="MANUFACTURER_NAME" value="onsemi" constant="no"/>
-<attribute name="MANUFACTURER_PART_NUMBER" value="MCT6SD" constant="no"/>
-<attribute name="MOUSER_PART_NUMBER" value="512-MCT6SD" constant="no"/>
-<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/MCT6SD?qs=RjNHq7A%252BoByx0biQVmQP5w%3D%3D" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="MCP96RL00-E_MX">
 <description>&lt;Board Mount Temperature Sensors +/- 8.0C Thermocouple to I2C converter in 5mmx5mm QFN. This device supports K, J, T, N, S, E, B, and R type thermocouples.&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
@@ -14624,6 +14539,95 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 </deviceset>
 </devicesets>
 </library>
+<library name="transistor-npn" urn="urn:adsk.eagle:library:398">
+<description>&lt;b&gt;NPN Transistors&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="SOT23-BEC" urn="urn:adsk.eagle:footprint:28685/1" library_version="6">
+<description>TO-236 ITT Intermetall</description>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.127" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.127" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.127" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.127" layer="51"/>
+<smd name="C" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="E" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="B" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+<packages3d>
+<package3d name="SOT23-BEC" urn="urn:adsk.eagle:package:28748/2" type="model" library_version="6">
+<description>TO-236 ITT Intermetall</description>
+<packageinstances>
+<packageinstance name="SOT23-BEC"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="NPN" urn="urn:adsk.eagle:symbol:26256/2" library_version="6">
+<wire x1="2.54" y1="2.54" x2="0.508" y2="1.524" width="0.1524" layer="94"/>
+<wire x1="1.778" y1="-1.524" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="1.27" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.778" y2="-1.524" width="0.1524" layer="94"/>
+<wire x1="1.54" y1="-2.04" x2="0.308" y2="-1.424" width="0.1524" layer="94"/>
+<wire x1="1.524" y1="-2.413" x2="2.286" y2="-2.413" width="0.254" layer="94"/>
+<wire x1="2.286" y1="-2.413" x2="1.778" y2="-1.778" width="0.254" layer="94"/>
+<wire x1="1.778" y1="-1.778" x2="1.524" y2="-2.286" width="0.254" layer="94"/>
+<wire x1="1.524" y1="-2.286" x2="1.905" y2="-2.286" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-2.286" x2="1.778" y2="-2.032" width="0.254" layer="94"/>
+<text x="-10.16" y="7.62" size="1.778" layer="95">&gt;NAME</text>
+<text x="-10.16" y="5.08" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-0.254" y1="-2.54" x2="0.508" y2="2.54" layer="94"/>
+<pin name="B" x="-2.54" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="E" x="2.54" y="-5.08" visible="off" length="short" direction="pas" swaplevel="3" rot="R90"/>
+<pin name="C" x="2.54" y="5.08" visible="off" length="short" direction="pas" swaplevel="2" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BC817*" urn="urn:adsk.eagle:component:29121/5" prefix="Q" library_version="6">
+<description>&lt;b&gt;NPN Transistor&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="NPN" x="0" y="0"/>
+</gates>
+<devices>
+<device name="SMD" package="SOT23-BEC">
+<connects>
+<connect gate="G$1" pin="B" pad="B"/>
+<connect gate="G$1" pin="C" pad="C"/>
+<connect gate="G$1" pin="E" pad="E"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:28748/2"/>
+</package3dinstances>
+<technologies>
+<technology name="-16">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-16LT1">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-25">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-25LT1">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-40">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-40LT1">
+<attribute name="POPULARITY" value="10" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -14700,13 +14704,8 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="4.7k"/>
 <part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="IC1" library="MCT6SD" deviceset="MCT6SD" device=""/>
 <part name="IC2" library="MCP96RL00-E_MX" deviceset="MCP96RL00-E_MX" device=""/>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
-<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
-<part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
-<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
 <part name="ANALOG_IN" library="1-770966-0" deviceset="1-770966-0" device=""/>
 <part name="K_TYPE" library="1-770966-0" deviceset="1-770966-0" device=""/>
 <part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
@@ -14738,6 +14737,17 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <part name="SUPPLY10" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="C18" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
 <part name="C25" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
+<part name="Q2" library="transistor-npn" library_urn="urn:adsk.eagle:library:398" deviceset="BC817*" device="SMD" package3d_urn="urn:adsk.eagle:package:28748/2" technology="-40LT1"/>
+<part name="Q3" library="transistor-npn" library_urn="urn:adsk.eagle:library:398" deviceset="BC817*" device="SMD" package3d_urn="urn:adsk.eagle:package:28748/2" technology="-40LT1"/>
+<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
+<part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
+<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k"/>
+<part name="R15" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="100k"/>
+<part name="SUPPLY14" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="R16" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="100k"/>
+<part name="SUPPLY19" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="SUPPLY20" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -14976,35 +14986,16 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <instance part="P+4" gate="1" x="-264.16" y="114.3" smashed="yes">
 <attribute name="VALUE" x="-266.7" y="114.3" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="SUPPLY2" gate="GND" x="-187.96" y="78.74" smashed="yes">
-<attribute name="VALUE" x="-189.865" y="75.565" size="1.778" layer="96"/>
-</instance>
-<instance part="IC1" gate="G$1" x="-170.18" y="60.96" smashed="yes">
-<attribute name="NAME" x="-130.81" y="68.58" size="1.778" layer="95" align="center-left"/>
-<attribute name="VALUE" x="-130.81" y="66.04" size="1.778" layer="96" align="center-left"/>
+<instance part="SUPPLY2" gate="GND" x="-190.5" y="78.74" smashed="yes">
+<attribute name="VALUE" x="-192.405" y="75.565" size="1.778" layer="96"/>
 </instance>
 <instance part="IC2" gate="G$1" x="-177.8" y="-30.48" smashed="yes">
 <attribute name="NAME" x="-148.59" y="-17.78" size="1.778" layer="95" align="center-left"/>
 <attribute name="VALUE" x="-148.59" y="-20.32" size="1.778" layer="96" align="center-left"/>
 </instance>
-<instance part="R2" gate="G$1" x="-200.66" y="50.8" smashed="yes" rot="R90">
-<attribute name="NAME" x="-202.1586" y="46.99" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-197.358" y="46.99" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="R3" gate="G$1" x="-193.04" y="50.8" smashed="yes" rot="R90">
-<attribute name="NAME" x="-194.5386" y="46.99" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-189.738" y="46.99" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="SUPPLY3" gate="GND" x="-200.66" y="38.1" smashed="yes">
-<attribute name="VALUE" x="-202.565" y="34.925" size="1.778" layer="96"/>
-</instance>
-<instance part="R4" gate="G$1" x="-111.76" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="-113.2586" y="62.23" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-108.458" y="62.23" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="R6" gate="G$1" x="-99.06" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="-100.5586" y="62.23" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-95.758" y="62.23" size="1.778" layer="96" rot="R90"/>
+<instance part="R2" gate="G$1" x="-81.28" y="78.74" smashed="yes">
+<attribute name="NAME" x="-85.09" y="80.2386" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-85.09" y="75.438" size="1.778" layer="96"/>
 </instance>
 <instance part="ANALOG_IN" gate="G$1" x="-231.14" y="55.88" smashed="yes" rot="R180">
 <attribute name="NAME" x="-247.65" y="48.26" size="1.778" layer="95" rot="R180" align="center-left"/>
@@ -15125,6 +15116,46 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <instance part="C25" gate="G$1" x="-243.84" y="93.98" smashed="yes">
 <attribute name="NAME" x="-242.316" y="94.361" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-242.316" y="89.281" size="1.778" layer="96"/>
+</instance>
+<instance part="Q2" gate="G$1" x="-127" y="78.74" smashed="yes">
+<attribute name="NAME" x="-137.16" y="86.36" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-137.16" y="83.82" size="1.778" layer="96"/>
+</instance>
+<instance part="Q3" gate="G$1" x="-99.06" y="78.74" smashed="yes" rot="MR0">
+<attribute name="NAME" x="-88.9" y="86.36" size="1.778" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="-88.9" y="83.82" size="1.778" layer="96" rot="MR0"/>
+</instance>
+<instance part="R3" gate="G$1" x="-144.78" y="78.74" smashed="yes" rot="R180">
+<attribute name="NAME" x="-140.97" y="77.2414" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="-140.97" y="82.042" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="R4" gate="G$1" x="-124.46" y="63.5" smashed="yes" rot="R90">
+<attribute name="NAME" x="-125.9586" y="59.69" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-121.158" y="59.69" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R6" gate="G$1" x="-101.6" y="63.5" smashed="yes" rot="R90">
+<attribute name="NAME" x="-103.0986" y="59.69" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-99.822" y="64.77" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="R15" gate="G$1" x="-134.62" y="68.58" smashed="yes" rot="R270">
+<attribute name="NAME" x="-133.1214" y="72.39" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="-137.922" y="72.39" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="SUPPLY14" gate="GND" x="-134.62" y="53.34" smashed="yes">
+<attribute name="VALUE" x="-136.525" y="50.165" size="1.778" layer="96"/>
+</instance>
+<instance part="R16" gate="G$1" x="-91.44" y="68.58" smashed="yes" rot="R270">
+<attribute name="NAME" x="-89.9414" y="72.39" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="-94.742" y="72.39" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="SUPPLY19" gate="GND" x="-91.44" y="53.34" smashed="yes">
+<attribute name="VALUE" x="-93.345" y="50.165" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY3" gate="GND" x="-101.6" y="53.34" smashed="yes">
+<attribute name="VALUE" x="-103.505" y="50.165" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY20" gate="GND" x="-124.46" y="53.34" smashed="yes">
+<attribute name="VALUE" x="-126.365" y="50.165" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -15320,34 +15351,14 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 </segment>
 <segment>
 <pinref part="SUPPLY2" gate="GND" pin="GND"/>
-<wire x1="-187.96" y1="81.28" x2="-187.96" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="-190.5" y1="81.28" x2="-190.5" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="MAP_SNSR" gate="G$1" pin="1"/>
-<wire x1="-187.96" y1="83.82" x2="-187.96" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="-205.74" y1="101.6" x2="-187.96" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-190.5" y1="83.82" x2="-190.5" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-205.74" y1="101.6" x2="-190.5" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="C19" gate="G$1" pin="1"/>
 <wire x1="-200.66" y1="88.9" x2="-200.66" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="-200.66" y1="83.82" x2="-187.96" y2="83.82" width="0.1524" layer="91"/>
-<junction x="-187.96" y="83.82"/>
-</segment>
-<segment>
-<pinref part="SUPPLY3" gate="GND" pin="GND"/>
-<pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="-200.66" y1="45.72" x2="-200.66" y2="43.18" width="0.1524" layer="91"/>
-<pinref part="R3" gate="G$1" pin="1"/>
-<wire x1="-200.66" y1="43.18" x2="-200.66" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="-193.04" y1="45.72" x2="-193.04" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="-193.04" y1="43.18" x2="-200.66" y2="43.18" width="0.1524" layer="91"/>
-<junction x="-200.66" y="43.18"/>
-</segment>
-<segment>
-<wire x1="-127" y1="60.96" x2="-121.92" y2="60.96" width="0.1524" layer="91"/>
-<label x="-121.92" y="60.96" size="1.4224" layer="95" xref="yes"/>
-<pinref part="IC1" gate="G$1" pin="EMITTER_2"/>
-</segment>
-<segment>
-<wire x1="-127" y1="53.34" x2="-121.92" y2="53.34" width="0.1524" layer="91"/>
-<label x="-121.92" y="53.34" size="1.4224" layer="95" xref="yes"/>
-<pinref part="IC1" gate="G$1" pin="EMITTER_1"/>
+<wire x1="-200.66" y1="83.82" x2="-190.5" y2="83.82" width="0.1524" layer="91"/>
+<junction x="-190.5" y="83.82"/>
 </segment>
 <segment>
 <wire x1="-160.02" y1="-12.7" x2="-160.02" y2="-10.16" width="0.1524" layer="91"/>
@@ -15439,6 +15450,26 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <wire x1="-228.6" y1="40.64" x2="-220.98" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="-220.98" y1="40.64" x2="-220.98" y2="43.18" width="0.1524" layer="91"/>
 <junction x="-228.6" y="40.64"/>
+</segment>
+<segment>
+<pinref part="R15" gate="G$1" pin="2"/>
+<pinref part="SUPPLY14" gate="GND" pin="GND"/>
+<wire x1="-134.62" y1="63.5" x2="-134.62" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R16" gate="G$1" pin="2"/>
+<pinref part="SUPPLY19" gate="GND" pin="GND"/>
+<wire x1="-91.44" y1="63.5" x2="-91.44" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY3" gate="GND" pin="GND"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<wire x1="-101.6" y1="55.88" x2="-101.6" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R4" gate="G$1" pin="1"/>
+<pinref part="SUPPLY20" gate="GND" pin="GND"/>
+<wire x1="-124.46" y1="55.88" x2="-124.46" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -15550,16 +15581,6 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <label x="-198.12" y="99.06" size="1.4224" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="-99.06" y1="71.12" x2="-99.06" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="-99.06" y1="76.2" x2="-111.76" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="-111.76" y1="71.12" x2="-111.76" y2="76.2" width="0.1524" layer="91"/>
-<label x="-111.76" y="81.28" size="1.4224" layer="95" rot="R90" xref="yes"/>
-<pinref part="R4" gate="G$1" pin="2"/>
-<pinref part="R6" gate="G$1" pin="2"/>
-<wire x1="-111.76" y1="76.2" x2="-111.76" y2="81.28" width="0.1524" layer="91"/>
-<junction x="-111.76" y="76.2"/>
-</segment>
-<segment>
 <wire x1="-162.56" y1="-58.42" x2="-162.56" y2="-73.66" width="0.1524" layer="91"/>
 <label x="-162.56" y="-78.74" size="1.4224" layer="95" rot="R270" xref="yes"/>
 <pinref part="IC2" gate="G$1" pin="VDD"/>
@@ -15590,6 +15611,16 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <segment>
 <pinref part="C19" gate="G$1" pin="2"/>
 <wire x1="-200.66" y1="99.06" x2="-200.66" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="-101.6" y1="83.82" x2="-101.6" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="-101.6" y1="88.9" x2="-124.46" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="-124.46" y1="83.82" x2="-124.46" y2="88.9" width="0.1524" layer="91"/>
+<label x="-124.46" y="93.98" size="1.4224" layer="95" rot="R90" xref="yes"/>
+<wire x1="-124.46" y1="88.9" x2="-124.46" y2="93.98" width="0.1524" layer="91"/>
+<junction x="-124.46" y="88.9"/>
+<pinref part="Q2" gate="G$1" pin="C"/>
+<pinref part="Q3" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="SPI_MOSI" class="0">
@@ -16071,9 +16102,9 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 </net>
 <net name="RPM_SIGNAL" class="0">
 <segment>
-<wire x1="-170.18" y1="60.96" x2="-175.26" y2="60.96" width="0.1524" layer="91"/>
-<label x="-175.26" y="60.96" size="1.4224" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC1" gate="G$1" pin="ANODE_1"/>
+<wire x1="-149.86" y1="78.74" x2="-152.4" y2="78.74" width="0.1524" layer="91"/>
+<label x="-152.4" y="78.74" size="1.4224" layer="95" rot="R180" xref="yes"/>
+<pinref part="R3" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <wire x1="-231.14" y1="55.88" x2="-228.6" y2="55.88" width="0.1524" layer="91"/>
@@ -16087,9 +16118,9 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 </net>
 <net name="TACH_SIGNAL" class="0">
 <segment>
-<wire x1="-170.18" y1="53.34" x2="-175.26" y2="53.34" width="0.1524" layer="91"/>
-<label x="-175.26" y="53.34" size="1.4224" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC1" gate="G$1" pin="ANODE_2"/>
+<wire x1="-76.2" y1="78.74" x2="-73.66" y2="78.74" width="0.1524" layer="91"/>
+<label x="-73.66" y="78.74" size="1.4224" layer="95" xref="yes"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <wire x1="-231.14" y1="58.42" x2="-220.98" y2="58.42" width="0.1524" layer="91"/>
@@ -16101,28 +16132,13 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <junction x="-220.98" y="58.42"/>
 </segment>
 </net>
-<net name="N$2" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="CATHODE_1"/>
-<pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="-170.18" y1="58.42" x2="-200.66" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="-200.66" y1="58.42" x2="-200.66" y2="55.88" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="R3" gate="G$1" pin="2"/>
-<pinref part="IC1" gate="G$1" pin="CATHODE_2"/>
-<wire x1="-193.04" y1="55.88" x2="-170.18" y2="55.88" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="TACH_ISO" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="COLLECTOR_2"/>
-<pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="-127" y1="58.42" x2="-111.76" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="-111.76" y1="58.42" x2="-111.76" y2="60.96" width="0.1524" layer="91"/>
-<label x="-111.76" y="58.42" size="1.4224" layer="95" xref="yes"/>
+<pinref part="Q3" gate="G$1" pin="E"/>
+<pinref part="R6" gate="G$1" pin="2"/>
+<wire x1="-101.6" y1="73.66" x2="-101.6" y2="68.58" width="0.1524" layer="91"/>
+<label x="-104.14" y="68.58" size="1.4224" layer="95" rot="R180" xref="yes"/>
+<wire x1="-101.6" y1="68.58" x2="-104.14" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="PE2_(ADC6/PTCY/ICP3/!SS1)"/>
@@ -16132,16 +16148,18 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 </net>
 <net name="RPM_ISO" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="COLLECTOR_1"/>
-<pinref part="R6" gate="G$1" pin="1"/>
-<wire x1="-127" y1="55.88" x2="-99.06" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="-99.06" y1="55.88" x2="-99.06" y2="60.96" width="0.1524" layer="91"/>
-<label x="-99.06" y="55.88" size="1.4224" layer="95" xref="yes"/>
+<pinref part="Q2" gate="G$1" pin="E"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="-124.46" y1="73.66" x2="-124.46" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="(SDA1/ICP4/ACO/PTCXY)_PE0"/>
 <wire x1="53.34" y1="50.8" x2="58.42" y2="50.8" width="0.1524" layer="91"/>
 <label x="58.42" y="50.8" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="-124.46" y1="71.12" x2="-121.92" y2="71.12" width="0.1524" layer="91"/>
+<label x="-121.92" y="71.12" size="1.4224" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="THERMO+" class="0">
@@ -16205,6 +16223,28 @@ Source: &lt;a href="https://fscdn.rohm.com/en/products/databook/datasheet/discre
 <wire x1="-22.86" y1="27.94" x2="-40.64" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="R29" gate="G$1" pin="2"/>
 <pinref part="IC4" gate="G$1" pin="(OC1A/PTCXY)_PB1"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="R3" gate="G$1" pin="1"/>
+<pinref part="Q2" gate="G$1" pin="B"/>
+<wire x1="-139.7" y1="78.74" x2="-134.62" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="R15" gate="G$1" pin="1"/>
+<wire x1="-134.62" y1="78.74" x2="-129.54" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-134.62" y1="73.66" x2="-134.62" y2="78.74" width="0.1524" layer="91"/>
+<junction x="-134.62" y="78.74"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="R16" gate="G$1" pin="1"/>
+<pinref part="Q3" gate="G$1" pin="B"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="-96.52" y1="78.74" x2="-91.44" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-91.44" y1="78.74" x2="-86.36" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-91.44" y1="73.66" x2="-91.44" y2="78.74" width="0.1524" layer="91"/>
+<junction x="-91.44" y="78.74"/>
 </segment>
 </net>
 </nets>
