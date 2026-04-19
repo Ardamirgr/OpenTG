@@ -15,7 +15,8 @@ Repository for the custom automotive gauge projects of **OpenTG** - originally e
   - Gauge firmware + hardware (TFT display, LEDs, menu, EEPROM settings)
 
 - **OpenTG Boost Controller**
-  - *(TBD)*
+  - Mainboard firmware + hardware (MAC valve driving, boost by gear, data through analog or CAN)
+  - Gauge firmware + hardware (TFT display, LEDs, menu, EEPROM settings)
     
 - **OpenTG Oil Temp / Oil Pressure Gauge**
   - *(TBD)*
