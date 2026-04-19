@@ -1,5 +1,6 @@
 // Sensor Source Selection (1 = CAN bus from ECU, 0 = Analog hardware timers)
 #define           USE_CAN_SENSORS                     1
+#define           DEBUG                               1
 #define           DME1_CAN_ID                         0x316         /* ECU broadcast frame, 10ms refresh */
 
 //Define pin assignments.
@@ -63,7 +64,7 @@ int16_t  read_intake_temp(void);
 void     read_exhaust_temp(void);
 uint16_t current_map(void);
 uint16_t read_rpm(void);
-uint16_t read_vss(void);
+uint8_t read_vss(void);
 
 /* Interpolation / table helpers */
 int16_t linear_interp(uint16_t input_adc, const uint16_t *x_axis, const int16_t *y_axis, uint8_t num_points);
@@ -71,3 +72,22 @@ int16_t linear_interp(uint16_t input_adc, const uint16_t *x_axis, const int16_t 
 /* CAN */
 void sendCAN(void);
 void packetReceive(int packetSize);
+
+
+
+#if DEBUG == 1
+  #define DEBUG_CAN_ID_STATUS   0x600
+  #define DEBUG_CAN_ID_SENSORS  0x601
+  #define DEBUG_CAN_ID_THERMO   0x602
+  #define DEBUG_CAN_ID_PWM      0x603
+  #define CAN_TIMEOUT_TICKS 20    // 20 * 5ms = 100ms
+  
+  #define DEBUG_FLAG_CAN_FRESH  (1 << 0)
+  #define DEBUG_FLAG_MAP_OK     (1 << 1)
+  #define DEBUG_FLAG_IAT_OK     (1 << 2)
+  #define DEBUG_FLAG_EGT_OK     (1 << 3)
+  #define DEBUG_FLAG_RPM_OK     (1 << 4)
+  #define DEBUG_FLAG_VSS_OK     (1 << 5)
+  uint8_t pwm;
+  uint8_t flags = 0;
+#endif

@@ -12,7 +12,7 @@
 #include "avr/interrupt.h"
 
 uint8_t timer = 11;
-uint8_t redraw_afr = 0;
+uint8_t redraw_pressure = 0;
 
 const uint8_t ind_Ypos[4][3] = {
                               {/*y0=*/53,/*y1=*/67,/*y2=*/60},
@@ -35,13 +35,15 @@ uint8_t led_mode;
 uint8_t flagEMU;
 uint8_t flagDebug = 0;
 
-uint8_t bl_level, bl_tick, afr_int, afr_decimal;
+uint8_t bl_level, bl_tick;
 uint8_t status_flags = 0;
 uint16_t die_counter = 0;
 
-uint16_t sens_temp, lambda_value;
-uint16_t afr_value;
-uint8_t current_profile, comm_ack, gear_max; 
+uint16_t map_mbar = 0;     // absolute MAP from controller
+uint16_t egt = 0;           // EGT in °C
+int16_t  iat = 0;         // IAT in 0.1°C
+uint16_t max_boost = 0;
+uint8_t current_profile;
 
 
 enum MenuState : uint8_t {
@@ -51,8 +53,6 @@ enum MenuState : uint8_t {
     LED_MENU,
     BCKLIGHT_MENU,
     PROFILE_MENU,
-    PROFILE_ACT_MENU,
-    PROFILE_GRAPH_MENU,
     EXIT_MENU = 255
 };
 
@@ -63,8 +63,6 @@ enum : uint8_t {
     BCKLIGHT_OPT = 4,
     MAIN_OPT = 4,
     PROFILE_OPT = 4,
-    PROFILE_ACT_OPT = 3,
-    PROFILE_GRAPH_OPT = 0
 };
 MenuState menu_state = MAIN_MENU;
 
@@ -154,10 +152,8 @@ void setup() {
   disp_out_mode   = EEPROM.read(DISP_MODE_ADDR);
   log_flag        = EEPROM.read(LOG_FLAG_ADDR);
   led_mode        = EEPROM.read(LED_MODE_ADDR);
-  flagEMU         = EEPROM.read(3);
   bl_level        = EEPROM.read(BL_LEVEL_ADDR);
   current_profile = EEPROM.read(CURR_PROF_ADDR);
-  gear_max        = EEPROM.read(GEAR_MAX_ADDR);
   bl_tick         = 0;
 
   wdt_enable(WDTO_4S);   
@@ -176,7 +172,7 @@ void setup() {
   //Fill color, RGB color with 565 structure
   //screen.fillScreen(COLOR_RGB565_BLACK);
 
-  if (!CAN.begin(1000000)) {
+  if (!CAN.begin(500000)) {
     errorCAN();
   }  
 
@@ -200,9 +196,9 @@ void setup() {
   } 
     
   drawMainScreen();
-  sens_temp = 0; 
-  afr_int = 8;
-  afr_decimal = 0;
+  map_mbar = 1013;
+  egt = 0;
+  iat = 0;
 }
 
 void loop(){
@@ -221,34 +217,15 @@ void loop(){
     main_Menu();
   }
 
-  /*if (!(status_flags & STATUS_SENSOR))  errorCJ125(ERR_SENS);
-  if (status_flags & STATUS_SHORT_CIRC) errorCJ125(ERR_SHRT);
-  if (status_flags & STATUS_LOW_BAT)    errorCJ125(ERR_BAT);
+  if (egt > 1030) errorTemp();   
+  UpdateScreen();
   
-  if (status_flags & STATUS_NORMAL) {  
-    if (sens_temp > 1030) errorTemp();   
-  
-  
-    
-    UpdateScreen();
-    
-    if (log_flag == 1) {
+  /*if (log_flag == 1) {
       logData(afr_value);
       logData(sens_temp);
     }
-  }*/
-  UpdateLEDS(afr_int, led_mode);
-  if (status_flags & STATUS_HEAT) {
-
-    screen.setTextColor(COLOR_RGB565_ORANGE, COLOR_RGB565_BLACK);
-    screen.setTextSize(10);
-    screen.setCursor(75, 100);
-    screen.print("Heat");
-  }
-
-  /*afr_decimal+= 10;
-  if (afr_decimal > 99) afr_decimal = 0; afr_int = random(14,16);
-  afr_value = uint16_t(afr_int * 100) + afr_decimal;*/
+  */
+  UpdateLEDS(map_mbar, led_mode);
 
   cli();
   wdt_reset();
@@ -261,84 +238,81 @@ void loop(){
  **************************************************************************************/
 void UpdateScreen() {
   static uint8_t prev_mode = 0xFF;
-
-  // per-mode previous strings (so switching modes doesn't confuse diffs)
-  static char afr_prev[6]    = "     ";
-  static char lambda_prev[6] = "     ";
-
+  static char bar_prev[6] = "     ";
+  static char psi_prev[6] = "     ";
   static uint16_t color_prev = 0;
 
-  // --- Temperature (keep your existing logic) ---
-  // NOTE: your timer is "calls to UpdateScreen", not time. If you later throttle UI, this becomes sane.
+  // --- Top EGT area ---
   if (timer > 50) {
     screen.setTextColor(COLOR_RGB565_WHITE, COLOR_RGB565_BLACK);
     screen.setTextSize(3);
     screen.setCursor(110, 45);
 
-    // crude fixed-width-ish overwrite (keeps your behavior)
-    if (sens_temp < 1000) screen.print(" ");
-    screen.print(sens_temp);
+    if (egt < 1000) screen.print(" ");
+    if (egt < 100) screen.print(" ");
+    if (egt < 10) screen.print(" ");
+    screen.print(egt);
 
     timer = 0;
   }
 
-  // --- Determine AFR-based color ---
-  uint16_t color;
-  if (afr_int > 15)      color = COLOR_RGB565_RED;
-  else if (afr_int > 13) color = COLOR_RGB565_YELLOW;
-  else                   color = COLOR_RGB565_GREEN;
+  // Convert absolute MAP to gauge boost
+  int16_t boost_gauge_mbar = (int16_t)map_mbar - 1013;
 
-  // force redraw if color changed
+  // Optional clamp so vacuum doesn't show negative boost
+  //if (boost_gauge_mbar < 0) boost_gauge_mbar = 0;
+
+  // Color by boost level
+  uint16_t color;
+  if (boost_gauge_mbar > (int16_t)max_boost + 100)   color = COLOR_RGB565_RED;
+  else if (boost_gauge_mbar > (int16_t)max_boost)    color = COLOR_RGB565_YELLOW;
+  else                                      color = COLOR_RGB565_GREEN;
+
   if (color != color_prev) {
-    redraw_afr = 1;
+    redraw_pressure = 1;
     color_prev = color;
   }
 
-  // force redraw if display mode changed (also reset prev text so diffs don't "skip")
   if (disp_out_mode != prev_mode) {
     prev_mode = disp_out_mode;
-    redraw_afr = 1;
-    afr_prev[0]=afr_prev[1]=afr_prev[2]=afr_prev[3]=afr_prev[4]=' ';
-    lambda_prev[0]=lambda_prev[1]=lambda_prev[2]=lambda_prev[3]=lambda_prev[4]=' ';
+    redraw_pressure = 1;
+    bar_prev[0]=bar_prev[1]=bar_prev[2]=bar_prev[3]=bar_prev[4]=' ';
+    psi_prev[0]=psi_prev[1]=psi_prev[2]=psi_prev[3]=psi_prev[4]=' ';
   }
 
-  // --- Main value area ---
   switch (disp_out_mode) {
-
-    default: { // Mode 0 = AFR
+    default:
+    case 0: { // BAR (signed)
+      // 1 bar = 1000 mbar, so 0.01 bar = 10 mbar
+      // signed 0.01 bar units (x100)
+      // signed 0.01 bar units (x100)
+      int16_t bar_x100 = boost_gauge_mbar / 10;
+      
       char cur[6];
-      // afr_decimal is already 0..99 in your CAN protocol
-      makeFixed5(cur, (uint8_t)afr_int, (uint8_t)afr_decimal);
-
-      drawFixed5Cells(AFR_X, AFR_Y, cur, afr_prev,
+      makeBar5(cur, bar_x100);
+      
+      drawFixed5Cells(AFR_X, AFR_Y, cur, bar_prev,
                       color, COLOR_RGB565_BLACK,
-                      redraw_afr);
-
+                      redraw_pressure);
       break;
     }
 
-    case 1: { // Mode 1 = Lambda
-      // Your existing scaling:
-      // lambda_value -> lambda_disp = lambda_value/10
-      // lambda_disp_int = lambda_disp/100
-      // lambda_disp_dec = lambda_disp%100
-      uint16_t lambda_disp = lambda_value / 10;
-      uint8_t  lambda_disp_int = (uint8_t)(lambda_disp / 100);
-      uint8_t  lambda_disp_dec = (uint8_t)(lambda_disp % 100);
+    case 1: { // PSI (signed)
+      // psi_x100 ≈ mbar * 145 / 1000 (your approximation), but signed
+      int16_t psi_x100 = (int16_t)(((int32_t)boost_gauge_mbar * 145) / 100);
 
       char cur[6];
-      makeFixed5(cur, lambda_disp_int, lambda_disp_dec);
-
-      drawFixed5Cells(AFR_X, AFR_Y, cur, lambda_prev,
+      makeFixed5Signed(cur, psi_x100);
+      
+      drawFixed5Cells(AFR_X, AFR_Y, cur, psi_prev,
                       color, COLOR_RGB565_BLACK,
-                      redraw_afr);
-
-      break;
+                      redraw_pressure);
+            break;
     }
   }
 
   timer++;
-  redraw_afr = 0;
+  redraw_pressure = 0;
 }
 
 
@@ -412,31 +386,10 @@ void main_Menu() {
           }
         });
         break;
-
-        case PROFILE_GRAPH_MENU:
-            drawGraph(current_profile);
-            drawBoostPoints(current_profile);
-          handleMenu(PROFILE_GRAPH_OPT, []() {            
-            if (selected_option < 10) menu_state = PROFILE_ACT_MENU;        // go to Select/Edit screen
-          });
-        break;
-      
-        case PROFILE_ACT_MENU:
-            handleMenu(PROFILE_ACT_OPT, []() {
-              if (selected_option < 2) {
-                if (selected_option == 1) editProfile(current_profile, 2); 
-                loadProfile(current_profile);
-                comm_ack = 0;
-                EEPROM.update(5,current_profile);
-              }
-              menu_state = MAIN_MENU;               
-             });
-        break;
-      
       case PROFILE_MENU:
         handleMenu(PROFILE_OPT, []() {
           current_profile = selected_option;       // 0..3
-          menu_state = PROFILE_GRAPH_MENU;        // go to Select/Edit screen
+          menu_state = MAIN_MENU;        // go to Select/Edit screen
         });
         break;
 
@@ -494,7 +447,7 @@ void main_Menu() {
   }
 
   drawMainScreen();
-  redraw_afr = 1;
+  redraw_pressure = 1;
 }
 
 
@@ -505,55 +458,40 @@ void main_Menu() {
  **************************************************************************************/
 // Draws the main display screen, showing sensor temperature, logging status, and output mode (AFR, Lambda, or O2%)
 void drawMainScreen() {
-  // Clear the entire screen to black
   screen.fillScreen(COLOR_RGB565_BLACK);
 
-  // Set text cursor for header title
   screen.setTextColor(COLOR_RGB565_WHITE, COLOR_RGB565_BLACK);  
   screen.setTextSize(3);
-  screen.setCursor(85, 6);
-  screen.print("Sens. Temp");  // Header label: Sensor Temperature
+  screen.setCursor(98, 6);
+  screen.print("Exh. Temp");
 
-  // Draw thermometer icon at the top left
   drawThermometerIcon(57, 0);
 
-  // If logging is enabled, draw a folder/log icon
   if (log_flag == 1)
     drawFolderIcon(10, 138);
 
   screen.setCursor(280, 6);
   screen.setTextColor(COLOR_RGB565_GREEN, COLOR_RGB565_BLACK);
-  screen.print('P');  // Header label: Sensor Temperature   
-  screen.print(current_profile+1);  // Header label: Sensor Temperature  
-  
-  // Display placeholder for temperature (e.g., "--- C")
+  screen.print('P');
+  screen.print(current_profile + 1);
+
+  // Top temperature placeholder
   screen.setTextColor(COLOR_RGB565_WHITE, COLOR_RGB565_BLACK); 
   screen.setCursor(120, 45);
   screen.print("--- C");
 
-  // Draw a small rounded rectangle next to temperature, possibly as a degree symbol or icon
-  screen.fillRoundRect(
-    /*x0=*/185,    // X position
-    /*y0=*/45,     // Y position
-    /*w=*/5,       // Width
-    /*h=*/5,       // Height
-    /*radius=*/2,  // Corner radius
-    /*color=*/COLOR_RGB565_WHITE  // Fill color
-  );
+  screen.fillRoundRect(185, 45, 5, 5, 2, COLOR_RGB565_WHITE);
 
-  // Display the label for the selected display mode: AFR, Lambda, or O2%
+  // Big-value unit label
   screen.setCursor(0, 108);
   screen.setTextSize(3);
-  
-   //  Display unit label
+
   switch (disp_out_mode) {
     case 0: screen.print("BAR:"); break;
     case 1: screen.print("PSI:"); break;
-    case 2: screen.print("OPT:"); break;
-
+    default: screen.print("BAR:"); break;
   }
 }
-
 /**************************************************************************************
  * Draws the menu header, along with the relevant menu icon                           *
  **************************************************************************************/
@@ -593,13 +531,6 @@ void drawMenu() {
 
     case PROFILE_MENU: {
       const char* items[] = {"Profile 1", "Profile 2", "Profile 3", "Profile 4" };
-      drawMenuHeader("Profile Menu", [](){ drawDispIcon(); }); // Temporary use of Disp icon
-      drawMenuItems(items, 4);
-      break;
-    }
-
-     case PROFILE_ACT_MENU: {
-      const char* items[] = {"Apply", "Edit", "Back"};
       drawMenuHeader("Profile Menu", [](){ drawDispIcon(); }); // Temporary use of Disp icon
       drawMenuItems(items, 4);
       break;
@@ -680,74 +611,7 @@ void drawSelector(uint8_t option, uint16_t color) {
  * Took me far longer than it should have (~5 hours), but saving flash is king :')     *
  * Draws the OpenGK logo that appears for ONLY 3 seconds at boot.                      *
  * NEVER AND I MEAN EVER, TOUCH THIS. These offsets have been worked out with blood.   *
- **************************************************************************************/
-
-void drawGraph(uint8_t number) {
-  screen.fillScreen(COLOR_RGB565_BLACK);
-  int x,y;
-  uint8_t i = 2;
-  
-  screen.setTextSize(3);
-  screen.setCursor(90, 5); 
-  screen.print("Profile ");
-  screen.print(number+1);
-  
-  for (y = 0; y < 3; y++) {
-    screen.drawFastHLine(30,150+y, 280, COLOR_RGB565_WHITE);        // Top
-    screen.drawFastVLine(30+y,30, 160, COLOR_RGB565_WHITE);
-  }
-  screen.setTextSize(2);
-  for (x = 55; x < 266; x+=35) {
-    screen.setCursor(x, 158); 
-    screen.print(i);
-    screen.print('k');
-    i++;
-    screen.drawFastVLine(x+10,30, 121, COLOR_RGB565_LGRAY);   
-  }
-  i=1;
-  for (y = 110; y > 20; y-=35) {
-    screen.setCursor(10, y); 
-    screen.print(i); 
-    i++;
-    screen.drawFastHLine(34,y+6, 266, COLOR_RGB565_LGRAY); 
-  }  
-}
-
-// v = fixed-point value where 100 = 1.00
-// returns pixels in [0,120]
-int scale_to_px(int v) {
-    if (v < 0) v = 0;
-    if (v > 300) v = 300;
-    return (v * 105 + 145) / 300;  // +150 for rounding (half of 300)
-}
-
-
-void drawBoostPoints(uint8_t profile) {
-  int x,y;
-  uint8_t i = 0;
-  int colour;
-
-  switch (profile) {
-    case 0: 
-      colour = COLOR_RGB565_ORANGE;
-      break;
-    case 1: 
-      colour = COLOR_RGB565_YELLOW;
-      break;
-    case 2: 
-      colour = COLOR_RGB565_GREEN;
-      break;      
-  }
-  uint16_t test_boost[7] = {100, 100, 200, 200, 299, 0, 130};
-  
-  for (x = 55; x < 266; x+=35){
-    y = scale_to_px(test_boost[i]);
-    screen.fillRect(/*x0=*/x+6, /*y0=*/147-y, /*w=*/9, /*h=*/9,/*color=*/colour);
-    i++;
-  }
-  
-}
- 
+ **************************************************************************************/ 
 
 void drawOpenGK(int offsetX, int offsetY) {
   
@@ -892,7 +756,7 @@ void drawDispIcon() {
   screen.setTextSize(1);
   screen.setCursor(57, 13);
   screen.setTextColor(COLOR_RGB565_RED, COLOR_RGB565_CYAN);  
-  screen.print("AFR");
+  screen.print("BAR");
   screen.setTextColor(COLOR_RGB565_WHITE, COLOR_RGB565_BLACK);
    
 }
@@ -959,7 +823,7 @@ void errorTemp() {
   screen.setTextSize(3);
   screen.println(" Stop vehicle for");
   screen.println(" sensor cooldown!");
-  while(sens_temp > 1030) {    
+  while(egt > 1030) {    
     if (user_action == 0) user_action = flashLEDS();
     cli();
     wdt_reset(); 
@@ -1057,28 +921,35 @@ void sendProfileData(uint8_t data_sent) {
 // [5-6] sensor temp (high byte, low byte)
 // [7] battery voltage
 void packetReceive(uint8_t packetSize) {
-  
-  // Check if it's a valid full 7-byte packet and not a remote transmission request (RTR)
-  PORTD &= ~(1 << PD2);  // set CAN standby low
+  PORTD &= ~(1 << PD2);  // CAN standby low
+
   if (CAN.packetId() == 0xFE && packetSize == 8) {
     uint8_t buffCAN[8];
     uint8_t i = 0;
 
-   // Read exactly 8 bytes (defensive against partial availability)
     while (i < 8 && CAN.available()) {
-        buffCAN[i++] = (uint8_t)CAN.read();
+      buffCAN[i++] = (uint8_t)CAN.read();
     }
-    
-    if (i != 8) return;  // short read; drop frame
-    // Parse
-    status_flags  = buffCAN[0];
-    lambda_value = (uint16_t)((uint16_t)buffCAN[1] << 8) | buffCAN[2];
-    afr_int      = buffCAN[3]; 
-    afr_decimal  = buffCAN[4];
-    sens_temp    = (uint16_t)((uint16_t)buffCAN[5] << 8) | buffCAN[6];
-    afr_value = uint16_t(afr_int * 100) + afr_decimal;
+
+    if (i != 8) {
+      PORTD |= (1 << PD2);
+      return;
+    }
+
+    status_flags = buffCAN[0];
+    map_mbar     = ((uint16_t)buffCAN[1] << 8) | buffCAN[2];
+    egt        = ((uint16_t)buffCAN[3] << 8) | buffCAN[4];
+    iat      = (int16_t)(((uint16_t)buffCAN[5] << 8) | buffCAN[6]);
+    max_boost = (uint16_t)buffCAN[7] * 100;
+
+    // Optional: if you want signed recovery explicitly
+    if (iat & 0x8000) {
+      iat = (int16_t)iat;
+    }
   }
-   PORTD |= (1 << PD2); // release standby
+
+  while (CAN.available()) CAN.read();
+  PORTD |= (1 << PD2);
 }
 
 
@@ -1149,13 +1020,20 @@ void logData(uint16_t value) {
  **************************************************************************************/
 
 // led_mode: 0 = single LED at index, 1 = bar up to index, default = all off
-static inline void UpdateLEDS(uint8_t afr_int, uint8_t led_mode)
+static inline void UpdateLEDS(uint16_t map_mbar, uint8_t led_mode)
 {
   // Map AFR (11..18) → index (0..7) with clamp, branchless-ish
   uint8_t index;
-  if (afr_int <= 11)      index = 0;
-  else if (afr_int >= 18) index = 7;
-  else                      index = (uint8_t)(afr_int - 11);
+  if (map_mbar <= 1013) {
+    index = 0;
+  } else if (map_mbar >= max_boost) {
+      index = 7;
+  } else {
+      uint16_t delta = map_mbar - 1013;       // 1..range-1
+      uint16_t range = max_boost - 1013;      // >= 1 here
+      index = (uint8_t)((delta * 7u) / range);   // 0..6 (near top becomes 6)
+      // optional: if you really want the top bin used more, use rounding below
+  }
 
   // Build ON-mask for 8 LEDs in bits 0..7 (1 = LED ON)
   uint8_t onmask;
@@ -1232,122 +1110,54 @@ uint16_t adc_read(uint8_t channel, uint8_t times) {
     return (uint16_t)(sum / times); // Get the average reading.
 }
 
-
-void loadProfile(uint8_t profile) {  
-
-    screen.fillScreen(COLOR_RGB565_BLACK);
-    screen.setTextColor(COLOR_RGB565_WHITE, COLOR_RGB565_BLACK);  
-    screen.setTextSize(3);
-    screen.setCursor(55, 78);
-    screen.print(" Applying...");  // Header label: Sensor Temperature
-    delay_ms(1000);
-    sendProfileData(profile);    
-    while (comm_ack != 1) {      
-      wdt_reset();
-      comm_ack = 1;  //dev
-    }
-    screen.setCursor(55, 78);
-    screen.print("Upload Done!");
-    delay_ms(1000);
-}
-
-
-void editProfile(uint8_t profile, uint8_t prof_type) { 
-
-    uint8_t max_boost = 0;
-    uint8_t psi_temp = 0;
-
-    screen.fillScreen(COLOR_RGB565_BLACK); 
-    screen.setTextSize(3);
-    screen.setCursor(40, 28);
-    screen.print("Set Max Boost");  
-    screen.setCursor(0, 108);
-    screen.print("PSI:");
-    screen.setTextSize(10);
-    screen.setCursor(100, 90);
-    if (psi_temp < 10) screen.print(0);
-    screen.print(psi_temp);
-    
-    EEPROM.update(MAX_BOOST_ADDR, setBoost(psi_temp));    
-    screen.fillScreen(COLOR_RGB565_BLACK); 
-
-    if (prof_type == 2) {
-       for (uint8_t gear = 2; gear < gear_max; gear++) {
-            setRpmBoost(psi_temp, gear);
-         }
-      
-    }
-    else if (prof_type == 1) {
-      setRpmBoost(psi_temp, 0);
-    }
-    else return;     
-}
-
-
-uint8_t setBoost (uint8_t psi_temp) {
-    while (true) {
-      uint8_t btn1 = (PIND & (1 << PIND3)) ? 1 : 0;  // Typically the "select" button
-      uint8_t btn2 = (PIND & (1 << PIND5)) ? 1 : 0;  // Typically the "next" button
-      
-      if (btn2 == 0) {
-      screen.setCursor(100, 90);
-      psi_temp++;
-      if (psi_temp > 44) psi_temp = 0;
-      if (psi_temp < 10) screen.print(0);
-      screen.print(psi_temp);
-      delay_ms(10);              // Debounce delay to avoid bouncing/multiple triggers
-      }
-
-      if (btn1 == 0) {
-      wdt_reset();
-      break;                   // Exit the loop after selection
-      }
-
-      delay_ms(10); // Polling interval (and debounce) when idle
-      cli();
-      wdt_reset();
-      sei();
-    }
-
-    return psi_temp;
-}
-
-void setRpmBoost (uint8_t psi_temp, uint8_t gear) {
-    for (uint16_t i = 2; i < 9; i++) {    
-        screen.setTextSize(3);
-        if (gear != 0) {
-          screen.setCursor(50, 5);
-          screen.print("Gear");
-          screen.print(gear);
-        } 
-        screen.setCursor(10, 40);
-        screen.print("Set Boost ");
-        screen.print(i*1000);
-        screen.print("RPM");
-        screen.setCursor(0, 108);
-        screen.print("PSI:");
-        screen.setTextSize(10);
-        screen.setCursor(100, 90);
-        if (psi_temp < 10) screen.print(0);
-        screen.print(psi_temp);
-    
-        EEPROM.update(500 + (i-1), setBoost(psi_temp));
-      }  
-}
-
-
-
-
-
-static inline void makeFixed5(char out[6], uint8_t whole, uint8_t dec2)
+static void makeFixed5Signed(char out[6], int16_t x100)
 {
-  // Always "xx.xx" (leading space if < 10)
-  out[0] = (whole < 10) ? ' ' : (char)('0' + (whole / 10));
+  // "-9.99" or " 9.99" or "99.99" (5 chars)
+  uint8_t neg = (x100 < 0);
+  if (neg) x100 = -x100;
+
+  if (x100 > 9999) x100 = 9999;
+
+  uint8_t whole = (uint8_t)(x100 / 100); // 0..99
+  uint8_t dec2  = (uint8_t)(x100 % 100);
+
+  out[0] = neg ? '-' : (whole >= 10 ? (char)('0' + whole / 10) : ' ');
   out[1] = (char)('0' + (whole % 10));
   out[2] = '.';
   out[3] = (char)('0' + (dec2 / 10));
   out[4] = (char)('0' + (dec2 % 10));
-  out[5] = 0;
+  out[5] = '\0';
+}
+
+static void makeBar5(char out[6], int16_t bar_x100)
+{
+  // bar_x100 is bar*100 (0.01 bar units), signed.
+  // Positive -> "x.xx "  (trailing space)
+  // Negative -> "-x.xx"  (no extra space)
+
+  uint8_t neg = (bar_x100 < 0);
+  if (neg) bar_x100 = -bar_x100;
+
+  // clamp to 9.99 because we only have 1 whole digit in the "x.xx" format
+  if (bar_x100 > 999) bar_x100 = 999;
+
+  uint8_t whole = (uint8_t)(bar_x100 / 100);   // 0..9
+  uint8_t dec2  = (uint8_t)(bar_x100 % 100);   // 0..99
+
+  if (neg) {
+    out[0] = '-';
+    out[1] = (char)('0' + whole);
+    out[2] = '.';
+    out[3] = (char)('0' + (dec2 / 10));
+    out[4] = (char)('0' + (dec2 % 10));
+  } else {
+    out[0] = (char)('0' + whole);
+    out[1] = '.';
+    out[2] = (char)('0' + (dec2 / 10));
+    out[3] = (char)('0' + (dec2 % 10));
+    out[4] = ' ';
+  }
+  out[5] = '\0';
 }
 
 // Draw only changed character *cells* (fixed-width), force redraw on color/mode change

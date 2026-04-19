@@ -18,6 +18,7 @@ uint16_t egt = 0;
 uint16_t board_amb = 0;
 uint16_t ambient_pressure = 0;                                     /* MAP reading at key-on, used as atmospheric reference */
 uint8_t  active_profile = 0;                                        /* Currently selected boost profile (0-3) */
+uint8_t  max_boost = 20;
 
 // Timer2 scheduler state
 volatile uint8_t tick_flags = 0;                                     /* Bitmask of pending task flags, set by ISR */
@@ -80,7 +81,7 @@ void setup() {
   // We want 25 Hz for MAC Valve -> TOP = 250000 / 25 - 1 = 9999
   TCCR1A = (1 << COM1A1) | (1 << WGM11); 
   TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11) | (1 << CS10);
-  ICR1 = 9999;
+  ICR1 = 11363;
   OCR1A = 0; // 0% duty initially
 
 #if USE_CAN_SENSORS == 0
@@ -142,105 +143,111 @@ void setup() {
   wdt_reset(); 
   sei();
   //Start main function.
+  #if DEBUG == 1
+  Serial.begin(115200);
+  delay_ms(100);
+  Serial.println("Boost controller debug start");
+  #endif
+  
   start();    
 }
-
-// --- Main startup sequence (orchestrator) ---
-void start() {
-
-  // 1. Read ambient (atmospheric) pressure as a reference point for boost calculations
-  ambient_pressure = read_map();
-
-  // 2. Read and store battery voltage at key-on
-  v_batt = adc_read(UB_ANALOG_INPUT_PIN);
-
-  // Turn ON power LED to indicate setup complete
-  LED_Control(LED_STATUS_POWER, 1);
-
-  // 3. Wait for engine to start (RPM > 600, confirmed twice with 1s gap)
-  while (1) {
-    cli();
-    wdt_reset();
-    sei();
-
-    if (read_rpm() > 600) {
-      delay_ms(1000);           // Wait 1 second and re-check to confirm engine is running
-
+#if DEBUG == 0
+  // --- Main startup sequence (orchestrator) ---
+  void start() {
+  
+    // 1. Read ambient (atmospheric) pressure as a reference point for boost calculations
+    ambient_pressure = read_map();
+  
+    // 2. Read and store battery voltage at key-on
+    v_batt = adc_read(UB_ANALOG_INPUT_PIN);
+  
+    // Turn ON power LED to indicate setup complete
+    LED_Control(LED_STATUS_POWER, 1);
+  
+    // 3. Wait for engine to start (RPM > 600, confirmed twice with 1s gap)
+    while (1) {
       cli();
       wdt_reset();
       sei();
-
+  
       if (read_rpm() > 600) {
-        status_flags |= STATUS_ENGINE_ON;
-        break;                  // Engine confirmed running
+        delay_ms(1000);           // Wait 1 second and re-check to confirm engine is running
+  
+        cli();
+        wdt_reset();
+        sei();
+  
+        if (read_rpm() > 600) {
+          status_flags |= STATUS_ENGINE_ON;
+          break;                  // Engine confirmed running
+        }
       }
+  
+      delay_ms(100);              // Polling interval while waiting for engine start
     }
-
-    delay_ms(100);              // Polling interval while waiting for engine start
-  }
-  sendCAN();
-}
-
-//Infinite loop — cooperative scheduler driven by Timer2 tick flags.
-void loop() {
-
-  // Atomically snapshot and clear only the flags we're about to service
-  cli();
-  uint8_t flags = tick_flags;
-  tick_flags &= ~flags;
-  wdt_reset();
-  sei();
-
-  // Nothing pending — yield
-  if (flags == 0) return;
-
-  // --- 10ms tasks ---
-  if (flags & TICK_FLAG_MAP) {
-    map_mbar = read_map();               // Read MAP sensor
-  }
-
-  if (flags & TICK_FLAG_SENS) {
-    #if USE_CAN_SENSORS == 0
-    rpm = read_rpm();                    // Sample RPM from hardware timer
-    vss = read_vss();                    // Sample VSS from hardware timer
-    if (can_age_ticks > CAN_TIMEOUT_TICKS) {
-      status_flags |= STATUS_VSS_FAULT;
-    } else {
-      status_flags &= ~STATUS_VSS_FAULT;
-    }
-    
-    #else
-    rpm = read_rpm();                    // Copy latest CAN RPM
-    vss = read_vss();                    // Copy latest CAN VSS
-    #endif
-    gear = calculate_gear(rpm, (uint8_t)vss);
-  }
-
-  // --- 40ms task: boost control ---
-  if (flags & TICK_FLAG_BOOST) {
-    boost_setpoint = lookup_boost_setpoint(gear, rpm);
-    mac_output = boost_control(boost_setpoint, map_mbar, rpm);
-    setBoostLevel(mac_output);
-  }
-
-  // --- 100ms task: CAN transmit ---
-  if (flags & TICK_FLAG_CAN_TX) {
     sendCAN();
-    //debug();
   }
-
-  // --- 200ms task: intake air temperature ---
-  if (flags & TICK_FLAG_IAT) {
-    iat = read_intake_temp();
+  
+  //Infinite loop — cooperative scheduler driven by Timer2 tick flags.
+  void loop() {
+  
+    // Atomically snapshot and clear only the flags we're about to service
+    cli();
+    uint8_t flags = tick_flags;
+    tick_flags &= ~flags;
+    wdt_reset();
+    sei();
+  
+    // Nothing pending — yield
+    if (flags == 0) return;
+  
+    // --- 10ms tasks ---
+    if (flags & TICK_FLAG_MAP) {
+      map_mbar = read_map();               // Read MAP sensor
+    }
+  
+    if (flags & TICK_FLAG_SENS) {
+      #if USE_CAN_SENSORS == 0
+        rpm = read_rpm();
+        vss = read_vss();
+      #else
+        rpm = read_rpm();
+        vss = read_vss();
+      
+        if (can_age_ticks > CAN_TIMEOUT_TICKS) {
+          status_flags |= STATUS_VSS_FAULT;
+        } else {
+          status_flags &= ~STATUS_VSS_FAULT;
+        }
+      #endif
+      gear = calculate_gear(rpm, vss);
+    }
+  
+    // --- 40ms task: boost control ---
+    if (flags & TICK_FLAG_BOOST) {
+      boost_setpoint = lookup_boost_setpoint(gear, rpm);
+      mac_output = boost_control(boost_setpoint, map_mbar, rpm);
+      setBoostLevel(mac_output);
+    }
+  
+    // --- 100ms task: CAN transmit ---
+    if (flags & TICK_FLAG_CAN_TX) {
+      sendCAN();
+      //debug();
+    }
+  
+    // --- 200ms task: intake air temperature ---
+    if (flags & TICK_FLAG_IAT) {
+      iat = read_intake_temp();
+    }
+  
+    // --- 500ms task: exhaust gas + ambient temperature ---
+    if (flags & TICK_FLAG_EGT) {
+      read_exhaust_temp();
+      v_batt = adc_read(UB_ANALOG_INPUT_PIN);      // Refresh battery voltage periodically
+    }
   }
-
-  // --- 500ms task: exhaust gas + ambient temperature ---
-  if (flags & TICK_FLAG_EGT) {
-    read_exhaust_temp();
-    v_batt = adc_read(UB_ANALOG_INPUT_PIN);      // Refresh battery voltage periodically
-  }
-}
-
+#endif
 //Boost regulating routine (PI).
 uint8_t boost_control(uint16_t boost_setpoint, uint16_t current_boost, uint16_t RPM) {
   
@@ -333,7 +340,7 @@ int16_t read_intake_temp() {
   // Out of bounds - clamp to highest temperature (lowest ADC)
   if (input_adc <= high_clamp) return (int16_t)pgm_read_word_near(&ip_tia_mes[14]);
   
-  return linear_interp(input_adc, tia_x_axis, ip_tia_mes, 15);
+  return linear_interp(input_adc, tia_x_axis, ip_tia_mes, 15) - 15;
 }
 
 void read_exhaust_temp() {  
@@ -370,7 +377,7 @@ uint16_t read_rpm() {
     return rpm;
 }
 
-uint16_t read_vss() {
+uint8_t read_vss() {
     uint8_t vss;
     uint8_t age;
 
@@ -380,7 +387,7 @@ uint16_t read_vss() {
     sei();
 
     if (age > CAN_TIMEOUT_TICKS) return 0;
-    return (uint16_t)vss;
+    return vss;
 }
 
 #else
@@ -404,7 +411,7 @@ uint16_t read_rpm() {
     return (uint16_t)rpm;
 }
 
-uint16_t read_vss() {
+uint8                                                                           _t read_vss() {
   uint16_t period;
   
   // Safely copy the 16-bit hardware period
@@ -420,9 +427,9 @@ uint16_t read_vss() {
   // Travel distance per pulse = 1.9644 / 1.241 = 1.5824 meters
   // Timer3 freq @ 1024 prescaler = 15.625 kHz
   // Speed (km/h) = (15625 / period) * 1.5824 m/pulse * 3.6 = 89012 / period
-  uint32_t speed_kmh = 89012UL / period;
+  uint8_t speed_kmh = 89012UL / period;
   
-  return (uint16_t)speed_kmh;
+  return speed_kmh;
 }
 #endif
 
@@ -472,6 +479,7 @@ void LED_Control(uint8_t LED_Name, uint8_t state) {
 }
 
 void setBoostLevel(uint8_t level) {
+   if (level<20) level = 0;
    OCR1A = (uint16_t)level * 39;     // 255 * 39 = 9945 which is 99.4% duty cycle. 100% is 9999, but needs slow 32bit math.
 }                                    // In a MAC valve 0.6% precision loss is unnoticable.
 
@@ -537,7 +545,7 @@ void sendCAN() {
         CAN.write(lowByte(iat));
 
         // [7] battery voltage (already a byte)
-        CAN.write(v_batt);
+        CAN.write(max_boost);
 
         CAN.endPacket();
         break; // transmission succeeded, exit loop
@@ -587,35 +595,6 @@ void packetReceive(int packetSize) {
 
   PORTD |= (1 << PORTD6);
 }
-
-/*void debug() {
-
-  Serial.print("UBat: ");
-  Serial.print(v_batt);
-  Serial.print(" | UR: ");
-  Serial.print(sens_resistance);
-  Serial.print(" (opt=");
-  Serial.print(sens_resistance_optimal);
-  Serial.print(") | UA: ");
-  Serial.print(sens_signal);
-  Serial.print(" (opt=");
-  Serial.print(sens_signal_optimal);
-  Serial.print(")");
-
-  Serial.print(" | Lambda: ");
-  Serial.print(lambda_value);
-  Serial.print(" | Temp: ");
-  Serial.print(sens_temp);
-
-  Serial.print(" | HeaterPWM: ");
-  Serial.print(sens_heater_out);
-  Serial.print(" | Flags: ");
-  Serial.println(status_flags, BIN);
-  Serial.print(" | FlagEMU: ");
-  Serial.println(flagEMU, HEX);
-
-}*/
-
 
 #if USE_CAN_SENSORS == 0
 ISR(TIMER4_CAPT_vect) {
@@ -677,3 +656,143 @@ ISR(TIMER2_COMPA_vect) {
   }
   #endif
 }
+
+
+#if DEBUG == 1
+
+void debug_serial_print(void) {
+  Serial.print("MAP=");
+  Serial.print(map_mbar);
+  Serial.print(" mbar");
+
+  Serial.print(" | IAT=");
+  Serial.print(iat / 10);
+  Serial.print('.');
+  Serial.print(abs(iat % 10));
+  Serial.print(" C");
+
+  Serial.print(" | RPM=");
+  Serial.print(rpm);
+
+  Serial.print(" | VSS=");
+  Serial.print(vss);
+  Serial.print(" km/h");
+
+  Serial.print(" | PWM=");
+  Serial.print(pwm);
+
+  Serial.print(" | EGT=");
+  Serial.print(egt);
+  Serial.print(" C");
+
+  Serial.print(" | Amb=");
+  Serial.print(board_amb);
+  Serial.print(" C");
+
+  Serial.print(" | VBat=");
+  Serial.print(v_batt);
+
+#if USE_CAN_SENSORS == 1
+  Serial.print(" | CAN_age=");
+  Serial.print(can_age_ticks);
+#endif
+
+  Serial.print(" | DbgFlags=0x");
+  Serial.println(flags, HEX);
+}
+  
+  uint8_t debug_pwm_pattern(void)
+  {     
+      //pwm++;
+      static uint8_t step = 0;
+  
+      switch (step) {
+          case 0: pwm = 0;   break;   // 0%
+          case 1: pwm = 51;  break;   // 20%
+          case 2: pwm = 102; break;   // 40%
+          case 3: pwm = 153; break;   // 60%
+          case 4: pwm = 204; break;   // 80%
+          default: pwm = 0;  break;
+      }
+  
+      step++;
+      if (step >= 6) step = 0;
+      
+      return pwm;
+  }
+  
+  void update_debug_flags(void)
+  {
+      flags = 0;
+  
+  #if USE_CAN_SENSORS == 1
+      if (can_age_ticks <= CAN_TIMEOUT_TICKS) flags |= DEBUG_FLAG_CAN_FRESH;
+  #endif
+  
+      if (map_mbar > 200 && map_mbar < 5000) flags |= DEBUG_FLAG_MAP_OK;
+      if (iat > -400 && iat < 1500) flags |= DEBUG_FLAG_IAT_OK;
+      if (egt < 1200) flags |= DEBUG_FLAG_EGT_OK;
+      if (rpm > 0) flags |= DEBUG_FLAG_RPM_OK;
+      if (vss < 300) flags |= DEBUG_FLAG_VSS_OK;
+  }
+  
+  void start(void)
+  {
+      setBoostLevel(0);
+      ambient_pressure = read_map();
+      v_batt = adc_read(UB_ANALOG_INPUT_PIN);
+      LED_Control(LED_STATUS_POWER, 1);
+  }
+  
+  void loop(void)
+  {
+      cli();
+      uint8_t flags = tick_flags;
+      tick_flags = 0;
+      wdt_reset();
+      sei();
+  
+      if (flags == 0) return;
+  
+      // every 10ms
+      if (flags & TICK_FLAG_MAP) {
+          map_mbar = read_map();
+      }
+  
+      if (flags & TICK_FLAG_SENS) {
+          rpm = read_rpm();
+          vss = read_vss();
+      }
+  
+      // every 200ms
+      if (flags & TICK_FLAG_IAT) {
+          iat = read_intake_temp();
+      }
+  
+      // every 500ms or 1000ms depending on your scheduler
+      if (flags & TICK_FLAG_EGT) {
+          read_exhaust_temp();
+          v_batt = adc_read(UB_ANALOG_INPUT_PIN);
+      }
+  
+      // every 40ms: keep output alive, but only change step once per CAN_TX slot
+      if (flags & TICK_FLAG_BOOST) {
+          setBoostLevel(pwm);
+      }
+  
+      // every 100ms
+      if (flags & TICK_FLAG_CAN_TX) {
+          static uint8_t pwm_div = 0;
+  
+          pwm_div++;
+          if (pwm_div >= 10) {      // 10 * 100ms = 1s per duty step
+              pwm_div = 0;
+              pwm = debug_pwm_pattern();
+          }
+  
+          update_debug_flags();
+          debug_serial_print();
+          sendCAN();
+      }
+  }
+#endif

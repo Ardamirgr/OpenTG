@@ -5,7 +5,7 @@ const PROGMEM int16_t ip_tia_mes[15] = {
 //Conversion factor: x/10 = Temp in °C
 
 const PROGMEM uint16_t tia_x_axis[15] = {
-871, 791, 696, 586, 470, 364, 326, 283, 208, 149, 112, 84, 61, 48, 38
+836, 759, 668, 562, 451, 349, 312, 271, 199, 143, 107, 80, 58, 46, 36
 };
 //Conversion factor: (x/1023) * 5 = Voltage
 
@@ -15,7 +15,7 @@ const PROGMEM int16_t ip_map_mes[2] = {
 //Conversion factor: X = Absolute Pressure in mBar
 
 const PROGMEM uint16_t map_x_axis[2] = {
-  914, 44
+  921, 27
 };
 //Conversion factor: (x/1023) * 5 = Voltage
 
