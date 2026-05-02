@@ -1,4 +1,4 @@
-# Audi S4/RS4 MAF Sensor Adapter Board
+# Bosch MAF Sensor Adapter Board
 
 PCB files for an adapter board compatible with the following Bosch MAF sensors:
 
@@ -7,6 +7,12 @@ PCB files for an adapter board compatible with the following Bosch MAF sensors:
 - Bosch `0280218067`
 - Bosch `0986280219`
 - Bosch `028021808P`
+
+## Connectors
+
+The connector that mates to the ECU harness can typically be found under the part name `HD052H-3.5-11` on sites such as AliExpress or Alibaba.
+
+The connector that mates to the Bosch MAF sensors is `1J0973775A`.
 
 ## Notes
 
