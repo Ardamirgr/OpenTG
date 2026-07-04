@@ -1,0 +1,51 @@
+AM29F400BB to HY628100B 128kb SRAM
+----------------------------------------
+Addressing pins (All connected)
+HY pin 11 (A1) > AMD pin 11 (A0) - C167 (A1 - 11 over from right) 
+HY pin 10 (A2) > AMD pin 10 (A1) - C167 (A2 - 12 over from right) 
+HY pin 9 (A3) > AMD pin 9 (A2) - C167 (A3 - 13 over from right) 
+HY pin 8 (A4) > AMD pin 8 (A3) - C167 (A4 - 14 over from right) 
+HY pin 7 (A5) > AMD pin 7 (A4)- C167 (A5 - 15 over from right) 
+HY pin 6 (A6) > AMD pin 6 (A5) - C167 (A6 - 16 over from right) 
+HY pin 5 (A7) > AMD pin 5 (A6) - C167 (A7 - 17 over from right) 
+
+HY pin 27 (A8) > AMD pin 4 (A7)  - C167 (A8 - 17 over from left) 
+HY pin 26 (A9) > AMD pin 42 (A8) - C167 (A9 - 16 over from left)
+HY pin 23 (A10) > AMD pin 41 (A9) - C167 (A10 - 15 over from left)
+HY pin 25 (A11) > AMD pin 40 (A10) - C167 (A11 - 14 over from left)
+HY pin 4 (A12) > AMD pin 39 (A11)  - C167 (A12 - 13 over from left)
+HY pin 28 (A13) > AMD pin 38 (A12) - C167 (A13 - 12 over from left)
+HY pin 3 (A14) > AMD pin 37 (A13) - C167 (A14 - 11 over from left) 
+HY pin 31 (A15) > AMD pin 36 (A14) - C167 (A15 - 10 over from left) 
+HY pin 2 (A16) > AMD pin 35 (A15) - C167 (A16 - (CPU pin 85) - 13 from bottom) 
+
+DQ pins (all connected)
+HY pin 13 (I/O1) > AMD pin 24 (DQ4) - C167 AD0
+HY pin 14 (I/O2) > AMD pin 25 (DQ12) - C167 AD1
+HY pin 15 (I/O3) > AMD pin 26 (DQ5) - C167 AD2
+HY pin 17 (I/O4) > AMD pin 27 (DQ13) - C167 AD3
+HY pin 18 (I/O5) > AMD pin 28  (DQ6) - C167 AD4
+HY pin 19 (I/O6) > AMD pin 29  (DQ14)  - C167 AD5
+HY pin 20 (I/O7) > AMD pin 30  (DQ7)  - C167 AD6
+HY pin 21 (I/O8) > AMD pin 31  (DQ15)  - C167 AD7
+
+Other Pins
+HY pin 32 (VCC) > AMD pin 23  (VCC)  5v+
+HY pin 16 (VSS) > AMD pin 32  (VSS) GND
+HY pin 1 (NC) > Not connected.
+HY pin 30 (CS2) > AMD pin 23 (VCC) 5v+
+
+SIMK43
+HY pin 22 (CS1) > pad 1 inside (CS) - cpu pin 3 simk43 (CS2)
+HY pin 24 (OE) > pad 1 edge (RD) - CPU pin 95 (RD)
+HY pin 29 (WE) = pad 2 inside (WR) - CPU pin 96 (WR)
+HY pin 12 (A0) > pad 2 edge (A0) - CPU pin 118 (10 over) - not connected to AM29F
+
+= 32 pins in total
+
+----------------------------------------
+AM29F800BB
+extra wire from:
+CPU pin 88 - P4.3/A19 > AMD A18
+----------------------------------------
+
