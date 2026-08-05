@@ -64,9 +64,10 @@ Remeber that the female headers should be placed on the bottom PCB side!
 4. Align the castellated pads with the original flash footprint.
 5. Check orientation and pin numbering before soldering (Pin#1 should be at the side of the C167 MCU).
 6. Solder the adapter board to the ECU flash pads.
-7. Inspect every connection for bridges, incomplete joints, lifted pads, or misalignment.
-8. Insert the LTM43 to the pin headers of the adapter board, observing the correct orientation (LTM43 oriented towards C167 MCU).
-9. Perform an initial BSL flash to program the replacement flash memory.
+7. Solder a jumper wire from C167 Pin 88 (P4.3/A19 ) to the Adapter Board pin #3. This is best done from a via present on the bottom side of the ECU, that connects to Pin 88. 
+8. Inspect every connection for bridges, incomplete joints, lifted pads, or misalignment.
+9. Insert the LTM43 to the pin headers of the adapter board, observing the correct orientation (LTM43 oriented towards C167 MCU).
+10. Perform an initial BSL flash to program the replacement flash memory.
 
 ## Initial BSL Flash
 
