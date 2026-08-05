@@ -1,0 +1,8 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"C1, C2";"CP_Radial_D5.0mm_P2.00mm";2;"10uF";;;
+2;"J1, J2, J3, J4, J5";"17709680";5;"1-770968-0";;;
+3;"Q1, Q2";"SOT-23";2;"BC807";;;
+4;"R1, R6";"R_0805_2012Metric";2;"1k";;;
+5;"R2, R4";"R_0805_2012Metric";2;"4k7";;;
+6;"R3, R5";"R_0805_2012Metric";2;"10k";;;
+7;"U1";"TO-252-2";1;"LP2950-5.0_TO252";;;

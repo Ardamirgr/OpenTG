@@ -1,0 +1,25 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model 1-770968-0
+#/190229/1178739/2.50/4/3/Connector
+DEF 1-770968-0 J 0 30 Y Y 1 F N
+F0 "J" 650 300 50 H V L CNN
+F1 "1-770968-0" 650 200 50 H V L CNN
+F2 "17709680" 650 100 50 H I L CNN
+F3 "http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=770968&DocType=Customer+Drawing&DocLang=English&DocFormat=pdf&PartCntxt=1-770968-0" 650 0 50 H I L CNN
+F4 "PCB Mount Header, Right Angle, Wire-to-Board, 4 Position, 4.14 mm [.162 in] Centerline, Fully Shrouded, Tin, Mini-Universal MATE-N-LOK" 650 -100 50 H I L CNN "Description"
+F5 "11.86" 650 -200 50 H I L CNN "Height"
+F6 "571-1-770968-0" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/TE-Connectivity-AMP/1-770968-0?qs=qXO2HHLAcoL4Dw11VWHBrA%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "TE Connectivity" 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "1-770968-0" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X 1 1 800 0 200 L 50 50 0 0 P
+X 2 2 0 0 200 R 50 50 0 0 P
+X 3 3 800 -100 200 L 50 50 0 0 P
+X 4 4 0 -100 200 R 50 50 0 0 P
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library
