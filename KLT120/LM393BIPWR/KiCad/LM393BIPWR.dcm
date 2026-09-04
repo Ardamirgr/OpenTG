@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LM393BIPWR
+D Analog Comparators Dual commercial grade standard comparator
+K
+F https://www.ti.com/lit/gpn/LM393B
+$ENDCMP
+#
+#End Doc Library

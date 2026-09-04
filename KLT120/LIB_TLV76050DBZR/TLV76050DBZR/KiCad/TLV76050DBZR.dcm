@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TLV76050DBZR
+D 100-mA, 30-V wide-VIN, fixed-output linear voltage regulator
+K
+F http://www.ti.com/lit/gpn/tlv760
+$ENDCMP
+#
+#End Doc Library
