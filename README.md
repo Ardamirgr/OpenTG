@@ -54,6 +54,26 @@ A configurable electronic boost-control system for turbocharged vehicles using a
 
 ---
 
+### KLT120 K-Line / L-Line Transceiver
+
+An open-source discrete automotive **K-Line / L-Line transceiver** designed for communication with ECUs and other diagnostic modules using **ISO 9141, ISO 14230 / KWP2000**, and manufacturer-specific K-Line protocols.
+
+Unlike conventional designs based on dedicated K-Line transceiver ICs, the KLT120 uses **LM393B comparators** and discrete N-channel MOSFET line drivers.
+
+Key features include:
+
+* Automotive **K-Line** interface
+* Automotive **L-Line** interface
+* Independent K-Line and L-Line control
+* Selectable **3.3V or 5V MCU logic** depending on the fitted LDO
+* Direct interface with microcontroller UART peripherals
+* Support for conventional **10.4 kbaud** diagnostic communication
+* Support for **5-baud and fast initialization** methods
+* Designed for reliable operation at **120 kbaud and beyond**
+* Suitable for ECU diagnostics, flashing, logging, and reverse-engineering applications
+
+---
+
 ### LTM43 Live Tuning Module
 
 A live-calibration module designed specifically for the **Siemens SIMK43 ECU**.
