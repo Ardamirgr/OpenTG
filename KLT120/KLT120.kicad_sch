@@ -12,35 +12,59 @@
 		(comment 1 "Supports 120+kbaud, limited by bus capacitance")
 	)
 	(lib_symbols
-		(symbol "3_pins:TERMINAL_2PINS"
+		(symbol "282812:282812-2"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" ""
-				(at -1.27 0.762 0)
+			(property "Reference" "J"
+				(at 16.51 7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
-						(size 1.778 1.5113)
+						(size 1.27 1.27)
 					)
-					(justify left bottom)
+					(justify left top)
 				)
 			)
-			(property "Value" ""
-				(at -1.27 -10.16 0)
+			(property "Value" "282812-2"
+				(at 16.51 5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
-						(size 1.778 1.5113)
+						(size 1.27 1.27)
 					)
-					(justify left bottom)
+					(justify left top)
 				)
 			)
-			(property "Footprint" "3_pins:90-2"
+			(property "Footprint" "2828122"
+				(at 16.51 -94.92 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=282812&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=282812-2"
+				(at 16.51 -194.92 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Description" "2 Position PCB Terminal Block, Header, Wire-to-Board, 5 mm [.197 in] Centerline, 1 Row, 300 VAC, Printed Circuit Board, Power & Signal, Board Mount"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -51,8 +75,8 @@
 					)
 				)
 			)
-			(property "Datasheet" ""
-				(at 0 0 0)
+			(property "Height" "8.5"
+				(at 16.51 -394.92 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -60,10 +84,11 @@
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 				)
 			)
-			(property "Description" ""
-				(at 0 0 0)
+			(property "Mouser Part Number" "571-282812-2"
+				(at 16.51 -494.92 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -71,123 +96,89 @@
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 				)
 			)
-			(property "ki_locked" ""
-				(at 0 0 0)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/282812-2?qs=tAlKl34sQZuTRLpaTJdQ0A%3D%3D"
+				(at 16.51 -594.92 0)
 				(show_name no)
 				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 				)
 			)
-			(symbol "TERMINAL_2PINS_1_0"
-				(polyline
-					(pts
-						(xy -1.27 0) (xy -1.27 -7.62)
+			(property "Manufacturer_Name" "TE Connectivity"
+				(at 16.51 -694.92 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
-					(stroke
-						(width 0.4064)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
+					(justify left top)
 				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 3.81 0)
+			)
+			(property "Manufacturer_Part_Number" "282812-2"
+				(at 16.51 -794.92 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
-					(stroke
-						(width 0.4064)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
+					(justify left top)
 				)
-				(polyline
-					(pts
-						(xy 1.27 -2.54) (xy 2.54 -2.54)
-					)
+			)
+			(symbol "282812-2_1_1"
+				(rectangle
+					(start 5.08 2.54)
+					(end 15.24 -5.08)
 					(stroke
-						(width 0.6096)
-						(type solid)
+						(width 0.254)
+						(type default)
 					)
 					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -5.08) (xy 2.54 -5.08)
-					)
-					(stroke
-						(width 0.6096)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.81 -7.62) (xy -1.27 -7.62)
-					)
-					(stroke
-						(width 0.4064)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.81 -7.62) (xy 3.81 0)
-					)
-					(stroke
-						(width 0.4064)
-						(type solid)
-					)
-					(fill
-						(type none)
+						(type background)
 					)
 				)
 				(pin passive line
-					(at 7.62 -5.08 180)
+					(at 0 0 0)
 					(length 5.08)
 					(name "1"
 						(effects
 							(font
-								(size 0 0)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "1"
 						(effects
 							(font
-								(size 1.524 1.524)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 7.62 -2.54 180)
+					(at 0 -2.54 0)
 					(length 5.08)
 					(name "2"
 						(effects
 							(font
-								(size 0 0)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "2"
 						(effects
 							(font
-								(size 1.524 1.524)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -2243,6 +2234,18 @@
 		)
 		(uuid "db7fe2d7-7841-477d-bef9-352d4413a929")
 	)
+	(text "3.3/5V Power Supply"
+		(exclude_from_sim no)
+		(at 92.964 184.658 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(thickness 0.5)
+				(bold yes)
+			)
+		)
+		(uuid "e22cc01f-8596-41cc-83e5-59aae1ceabf9")
+	)
 	(text_box "LM393 not rail to rail, so line voltage\nneeds to be Vcc - 2V.\n\nCurrent dividers: Vline = VBAT/4\nVline_ref = VBAT/8\nComes down to:\nVline = Vline_ref/2"
 		(exclude_from_sim no)
 		(at 214.376 91.7339 0)
@@ -2291,7 +2294,7 @@
 		(uuid "041817f2-d478-4fef-9712-49f87668aa1b")
 	)
 	(junction
-		(at 44.45 93.98)
+		(at 46.99 93.98)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0529c3e9-353b-43ca-9495-2154eac41b60")
@@ -2327,7 +2330,7 @@
 		(uuid "3022c1bd-f605-4365-8b01-36a0739b6fd9")
 	)
 	(junction
-		(at 44.45 48.26)
+		(at 46.99 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "575169c1-8482-46d0-9341-2b84174eb7a8")
@@ -2339,7 +2342,7 @@
 		(uuid "7ab9b126-1666-46e7-a2a7-058f8730d296")
 	)
 	(junction
-		(at 49.53 96.52)
+		(at 52.07 96.52)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "83eaadb5-0cbc-46be-a4dd-de5ef67c338c")
@@ -2363,7 +2366,7 @@
 		(uuid "b1da5b9a-f6d7-439c-a279-7d5dbcad4b28")
 	)
 	(junction
-		(at 118.11 163.83)
+		(at 114.3 163.83)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bc1cdfe0-b77b-4e90-b767-6646309aaf3f")
@@ -2375,19 +2378,19 @@
 		(uuid "bffa6817-7535-4ef6-a584-da8fcb0d1d82")
 	)
 	(junction
-		(at 49.53 50.8)
+		(at 52.07 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c51439b7-4106-454f-beaf-a5f7276fa383")
 	)
 	(junction
-		(at 44.45 78.74)
+		(at 46.99 78.74)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cb5afef0-af59-458a-9af0-6b993cf762bd")
 	)
 	(junction
-		(at 44.45 33.02)
+		(at 46.99 33.02)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ce7563d9-7bbb-4577-96fe-3738f4af843d")
@@ -2406,7 +2409,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 81.28) (xy 49.53 78.74)
+			(xy 52.07 81.28) (xy 52.07 78.74)
 		)
 		(stroke
 			(width 0)
@@ -2466,7 +2469,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 35.56) (xy 49.53 33.02)
+			(xy 52.07 35.56) (xy 52.07 33.02)
 		)
 		(stroke
 			(width 0)
@@ -2566,7 +2569,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 163.83) (xy 118.11 166.37)
+			(xy 114.3 163.83) (xy 114.3 166.37)
 		)
 		(stroke
 			(width 0)
@@ -2576,7 +2579,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 33.02) (xy 44.45 33.02)
+			(xy 52.07 33.02) (xy 46.99 33.02)
 		)
 		(stroke
 			(width 0)
@@ -2596,7 +2599,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 33.02) (xy 44.45 35.56)
+			(xy 46.99 33.02) (xy 46.99 35.56)
 		)
 		(stroke
 			(width 0)
@@ -2614,9 +2617,19 @@
 		)
 		(uuid "2c0b18e1-5bdb-4d21-af46-813d5ee981bc")
 	)
+	(polyline
+		(pts
+			(xy 50.8 190.5) (xy 140.97 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c6f31c3-339a-45e4-b8a7-fd960807d19b")
+	)
 	(wire
 		(pts
-			(xy 49.53 50.8) (xy 52.07 50.8)
+			(xy 52.07 50.8) (xy 54.61 50.8)
 		)
 		(stroke
 			(width 0)
@@ -2674,9 +2687,19 @@
 		)
 		(uuid "3c12e403-ce3a-4ed1-b0c4-f8facd95fb1c")
 	)
+	(polyline
+		(pts
+			(xy 50.8 142.24) (xy 50.8 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ddefe55-b13b-492f-966d-5de13454f9db")
+	)
 	(wire
 		(pts
-			(xy 44.45 48.26) (xy 52.07 48.26)
+			(xy 46.99 48.26) (xy 54.61 48.26)
 		)
 		(stroke
 			(width 0)
@@ -2736,7 +2759,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 160.02) (xy 118.11 163.83)
+			(xy 114.3 160.02) (xy 114.3 163.83)
 		)
 		(stroke
 			(width 0)
@@ -2796,7 +2819,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 96.52) (xy 52.07 96.52)
+			(xy 52.07 96.52) (xy 54.61 96.52)
 		)
 		(stroke
 			(width 0)
@@ -2813,6 +2836,16 @@
 			(type default)
 		)
 		(uuid "59ddf24c-1a5e-43ad-b450-f10adf2a7bc8")
+	)
+	(polyline
+		(pts
+			(xy 140.97 142.24) (xy 50.8 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ce4f2f7-ec83-4da2-93e1-83748e32f6aa")
 	)
 	(wire
 		(pts
@@ -2846,7 +2879,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 48.26) (xy 44.45 48.26)
+			(xy 45.72 48.26) (xy 46.99 48.26)
 		)
 		(stroke
 			(width 0)
@@ -2866,7 +2899,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 173.99) (xy 118.11 176.53)
+			(xy 114.3 173.99) (xy 114.3 176.53)
 		)
 		(stroke
 			(width 0)
@@ -2916,7 +2949,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 163.83) (xy 127 163.83)
+			(xy 114.3 163.83) (xy 123.19 163.83)
 		)
 		(stroke
 			(width 0)
@@ -3006,7 +3039,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 166.37) (xy 124.46 166.37)
+			(xy 123.19 166.37) (xy 120.65 166.37)
 		)
 		(stroke
 			(width 0)
@@ -3026,7 +3059,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 78.74) (xy 44.45 81.28)
+			(xy 46.99 78.74) (xy 46.99 81.28)
 		)
 		(stroke
 			(width 0)
@@ -3053,6 +3086,16 @@
 			(type default)
 		)
 		(uuid "8dbcace8-7631-4b44-9694-eaa6ade6dac4")
+	)
+	(polyline
+		(pts
+			(xy 140.97 190.5) (xy 140.97 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92ce9e7d-5b16-4111-9e65-fb8e8868b5ae")
 	)
 	(wire
 		(pts
@@ -3126,7 +3169,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 77.47) (xy 44.45 78.74)
+			(xy 46.99 77.47) (xy 46.99 78.74)
 		)
 		(stroke
 			(width 0)
@@ -3176,7 +3219,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 50.8) (xy 49.53 50.8)
+			(xy 45.72 50.8) (xy 52.07 50.8)
 		)
 		(stroke
 			(width 0)
@@ -3206,7 +3249,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 78.74) (xy 44.45 78.74)
+			(xy 52.07 78.74) (xy 46.99 78.74)
 		)
 		(stroke
 			(width 0)
@@ -3356,7 +3399,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 91.44) (xy 49.53 96.52)
+			(xy 52.07 91.44) (xy 52.07 96.52)
 		)
 		(stroke
 			(width 0)
@@ -3446,7 +3489,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 45.72) (xy 49.53 50.8)
+			(xy 52.07 45.72) (xy 52.07 50.8)
 		)
 		(stroke
 			(width 0)
@@ -3476,7 +3519,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 93.98) (xy 52.07 93.98)
+			(xy 46.99 93.98) (xy 54.61 93.98)
 		)
 		(stroke
 			(width 0)
@@ -3526,13 +3569,23 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 31.75) (xy 44.45 33.02)
+			(xy 46.99 31.75) (xy 46.99 33.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "e599876a-3c2c-477b-8f4d-5af5f46ba1d8")
+	)
+	(polyline
+		(pts
+			(xy 50.8 143.51) (xy 50.8 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e66839c3-d30c-4ee4-a5b9-15437a73d8fb")
 	)
 	(wire
 		(pts
@@ -3546,7 +3599,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 45.72) (xy 44.45 48.26)
+			(xy 46.99 45.72) (xy 46.99 48.26)
 		)
 		(stroke
 			(width 0)
@@ -3606,7 +3659,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 91.44) (xy 44.45 93.98)
+			(xy 46.99 91.44) (xy 46.99 93.98)
 		)
 		(stroke
 			(width 0)
@@ -3626,7 +3679,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 166.37) (xy 124.46 170.18)
+			(xy 120.65 166.37) (xy 120.65 170.18)
 		)
 		(stroke
 			(width 0)
@@ -3636,7 +3689,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 93.98) (xy 44.45 93.98)
+			(xy 45.72 93.98) (xy 46.99 93.98)
 		)
 		(stroke
 			(width 0)
@@ -3666,7 +3719,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 96.52) (xy 49.53 96.52)
+			(xy 45.72 96.52) (xy 52.07 96.52)
 		)
 		(stroke
 			(width 0)
@@ -3746,7 +3799,7 @@
 			)
 		)
 	)
-	(global_label "K_LINE_OUT"
+	(global_label "K_LINE_IN"
 		(shape input)
 		(at 128.27 49.53 270)
 		(fields_autoplaced yes)
@@ -3796,7 +3849,7 @@
 	)
 	(global_label "RX_L"
 		(shape input)
-		(at 52.07 96.52 0)
+		(at 54.61 96.52 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3806,7 +3859,7 @@
 		)
 		(uuid "25396ae7-f17a-4a27-be72-ebc100da05d3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 59.5304 96.52 0)
+			(at 62.0704 96.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3868,7 +3921,7 @@
 	)
 	(global_label "RX"
 		(shape input)
-		(at 52.07 50.8 0)
+		(at 54.61 50.8 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3878,7 +3931,7 @@
 		)
 		(uuid "37bc993c-9e3e-4c2a-9033-7e8dff700f88")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 57.5347 50.8 0)
+			(at 60.0747 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4108,7 +4161,7 @@
 	)
 	(global_label "TX"
 		(shape input)
-		(at 52.07 48.26 0)
+		(at 54.61 48.26 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4118,7 +4171,7 @@
 		)
 		(uuid "caa14841-c941-41d2-ac7b-af1ce820b2b9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 57.2323 48.26 0)
+			(at 59.7723 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4132,7 +4185,7 @@
 	)
 	(global_label "TX_L"
 		(shape input)
-		(at 52.07 93.98 0)
+		(at 54.61 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4142,7 +4195,7 @@
 		)
 		(uuid "da8b17fb-663a-4b28-82f3-24498f51d9c9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 59.228 93.98 0)
+			(at 61.768 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4265,7 +4318,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 76.2 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -4346,7 +4399,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 163.83 41.91 0)
 			(hide yes)
 			(show_name no)
@@ -4474,7 +4527,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 44.45 31.75 0)
+		(at 46.99 31.75 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4485,7 +4538,7 @@
 		(fields_autoplaced yes)
 		(uuid "0e1db2c7-e1d4-475b-bc71-22659de70360")
 		(property "Reference" "#PWR09"
-			(at 44.45 35.56 0)
+			(at 46.99 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4496,7 +4549,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 44.45 26.67 0)
+			(at 46.99 26.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4506,7 +4559,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 44.45 31.75 0)
+			(at 46.99 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4517,7 +4570,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 31.75 0)
+			(at 46.99 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4528,7 +4581,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 44.45 31.75 0)
+			(at 46.99 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4630,7 +4683,7 @@
 	)
 	(symbol
 		(lib_id "power:+12V")
-		(at 118.11 160.02 0)
+		(at 114.3 160.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4641,7 +4694,7 @@
 		(fields_autoplaced yes)
 		(uuid "12f5975e-ab0f-4ce7-8d1e-4a3714e1da11")
 		(property "Reference" "#PWR013"
-			(at 118.11 163.83 0)
+			(at 114.3 163.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4652,7 +4705,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 118.11 154.94 0)
+			(at 114.3 154.94 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4662,7 +4715,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 118.11 160.02 0)
+			(at 114.3 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4673,7 +4726,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 160.02 0)
+			(at 114.3 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4684,7 +4737,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 118.11 160.02 0)
+			(at 114.3 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4739,7 +4792,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 238.76 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4789,7 +4842,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 118.11 176.53 0)
+		(at 114.3 176.53 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4800,7 +4853,7 @@
 		(fields_autoplaced yes)
 		(uuid "1c991398-1b98-44cb-b591-a8ba245f1b3b")
 		(property "Reference" "#PWR012"
-			(at 118.11 182.88 0)
+			(at 114.3 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4811,7 +4864,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 118.11 181.61 0)
+			(at 114.3 181.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4821,7 +4874,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 118.11 176.53 0)
+			(at 114.3 176.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4832,7 +4885,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 176.53 0)
+			(at 114.3 176.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4843,7 +4896,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 118.11 176.53 0)
+			(at 114.3 176.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4897,7 +4950,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOT95P237X112-3N"
+		(property "Footprint" "LIB_TLV76050DBZR:SOT95P237X112-3N"
 			(at 96.52 258.75 0)
 			(hide yes)
 			(show_name no)
@@ -5043,7 +5096,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 170.18 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -5124,7 +5177,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M1206"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 238.76 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -5407,86 +5460,6 @@
 		)
 	)
 	(symbol
-		(lib_id "3_pins:TERMINAL_2PINS")
-		(at 35.56 91.44 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "35f2f77e-3472-4c3a-a5f1-73468afbfc6f")
-		(property "Reference" "111"
-			(at 31.496 95.25 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-			)
-		)
-		(property "Value" ""
-			(at 34.29 101.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "3_pins:90-2"
-			(at 35.56 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 35.56 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 35.56 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "1dbb89f1-c258-48ec-8b5c-795d8346b997")
-		)
-		(pin "1"
-			(uuid "6b29c5c4-b1b5-4aec-8be5-81108898b118")
-		)
-		(instances
-			(project "KLT120"
-				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
-					(reference "111")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 123.19 34.29 90)
 		(unit 1)
@@ -5518,7 +5491,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 123.19 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -5567,88 +5540,6 @@
 		)
 	)
 	(symbol
-		(lib_id "3_pins:TERMINAL_2PINS")
-		(at 257.81 72.39 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3f879a96-739d-4bfe-adbe-6bce6c36a6fe")
-		(property "Reference" "1"
-			(at 260.35 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" ""
-			(at 259.08 62.23 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "3_pins:90-2"
-			(at 257.81 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 257.81 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 257.81 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "531b5c08-7eca-4b1a-a70d-cb8ff70c833f")
-		)
-		(pin "1"
-			(uuid "7c5429db-6d3a-41d2-9c79-50a806920c55")
-		)
-		(instances
-			(project "KLT120"
-				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
-					(reference "1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
 		(at 134.62 54.61 90)
 		(unit 1)
@@ -5681,7 +5572,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 134.62 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -5918,7 +5809,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 62.23 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -5999,7 +5890,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 134.62 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -6204,7 +6095,7 @@
 	)
 	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
-		(at 49.53 40.64 90)
+		(at 52.07 40.64 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6214,7 +6105,7 @@
 		(dnp no)
 		(uuid "500dcd43-b5cd-4f6e-8b00-7cb89811e6b5")
 		(property "Reference" "R11"
-			(at 51.562 39.116 90)
+			(at 54.102 39.116 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6225,7 +6116,7 @@
 			)
 		)
 		(property "Value" "4K7"
-			(at 56.134 40.894 90)
+			(at 58.674 40.894 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6235,8 +6126,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
-			(at 49.53 40.64 0)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 52.07 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6247,7 +6138,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 49.53 40.64 0)
+			(at 52.07 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6258,7 +6149,7 @@
 			)
 		)
 		(property "Description" "RESISTOR, European symbol"
-			(at 49.53 40.64 0)
+			(at 52.07 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6316,7 +6207,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 228.6 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -6397,7 +6288,7 @@
 				(justify right bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 170.18 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -6446,88 +6337,6 @@
 		)
 	)
 	(symbol
-		(lib_id "3_pins:TERMINAL_2PINS")
-		(at 134.62 168.91 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "56c1dad2-92cf-4d93-ac1f-21f3ced80874")
-		(property "Reference" "11"
-			(at 137.16 165.1 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" ""
-			(at 135.89 158.75 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "3_pins:90-2"
-			(at 134.62 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 134.62 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "76f5381c-1d1c-4b57-90fb-b123dfc6e07c")
-		)
-		(pin "1"
-			(uuid "420d651e-8001-4bea-baed-b0e9a9a163ea")
-		)
-		(instances
-			(project "KLT120"
-				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
-					(reference "11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
 		(at 76.2 40.64 90)
 		(unit 1)
@@ -6560,7 +6369,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 76.2 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -6688,7 +6497,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 124.46 170.18 0)
+		(at 120.65 170.18 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6699,7 +6508,7 @@
 		(fields_autoplaced yes)
 		(uuid "65dd7da2-cb36-4844-bc1b-9a4ed031ab4d")
 		(property "Reference" "#PWR010"
-			(at 124.46 176.53 0)
+			(at 120.65 176.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6710,7 +6519,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 124.46 175.26 0)
+			(at 120.65 175.26 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6720,7 +6529,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 124.46 170.18 0)
+			(at 120.65 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6731,7 +6540,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 124.46 170.18 0)
+			(at 120.65 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6742,7 +6551,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 124.46 170.18 0)
+			(at 120.65 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6875,7 +6684,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 76.2 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -6956,7 +6765,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 163.83 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -7083,8 +6892,150 @@
 		)
 	)
 	(symbol
+		(lib_id "282812:282812-2")
+		(at 45.72 50.8 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7a343def-0ec6-4c0a-bf8b-6780dfd331a6")
+		(property "Reference" "J4"
+			(at 35.56 41.5755 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "282812-2"
+			(at 35.56 43.9998 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "282812:2828122"
+			(at 29.21 -44.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=282812&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=282812-2"
+			(at 29.21 -144.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Description" "2 Position PCB Terminal Block, Header, Wire-to-Board, 5 mm [.197 in] Centerline, 1 Row, 300 VAC, Printed Circuit Board, Power & Signal, Board Mount"
+			(at 45.72 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Height" "8.5"
+			(at 29.21 -344.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Part Number" "571-282812-2"
+			(at 29.21 -444.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/282812-2?qs=tAlKl34sQZuTRLpaTJdQ0A%3D%3D"
+			(at 29.21 -544.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Name" "TE Connectivity"
+			(at 29.21 -644.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Part_Number" "282812-2"
+			(at 29.21 -744.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "1"
+			(uuid "df0c7082-ca19-4247-a9cb-434b52f1819c")
+		)
+		(pin "2"
+			(uuid "17ba5d13-890e-4036-b1d4-805139a065c6")
+		)
+		(instances
+			(project "KLT120"
+				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
-		(at 49.53 86.36 90)
+		(at 52.07 86.36 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7094,7 +7045,7 @@
 		(dnp no)
 		(uuid "7bd2f69b-13d5-492b-85e5-9280a9fede44")
 		(property "Reference" "R23"
-			(at 51.562 84.836 90)
+			(at 54.102 84.836 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7105,7 +7056,7 @@
 			)
 		)
 		(property "Value" "4K7"
-			(at 56.134 86.614 90)
+			(at 58.674 86.614 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7115,8 +7066,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
-			(at 49.53 86.36 0)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 52.07 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7127,7 +7078,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 49.53 86.36 0)
+			(at 52.07 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7138,7 +7089,7 @@
 			)
 		)
 		(property "Description" "RESISTOR, European symbol"
-			(at 49.53 86.36 0)
+			(at 52.07 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7158,6 +7109,148 @@
 			(project "KLT120"
 				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
 					(reference "R23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "282812:282812-2")
+		(at 45.72 96.52 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7c9d779b-0d79-4e5d-9545-925439256220")
+		(property "Reference" "J3"
+			(at 35.56 87.2955 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "282812-2"
+			(at 35.56 89.7198 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "282812:2828122"
+			(at 29.21 1.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=282812&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=282812-2"
+			(at 29.21 -98.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Description" "2 Position PCB Terminal Block, Header, Wire-to-Board, 5 mm [.197 in] Centerline, 1 Row, 300 VAC, Printed Circuit Board, Power & Signal, Board Mount"
+			(at 45.72 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Height" "8.5"
+			(at 29.21 -298.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Part Number" "571-282812-2"
+			(at 29.21 -398.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/282812-2?qs=tAlKl34sQZuTRLpaTJdQ0A%3D%3D"
+			(at 29.21 -498.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Name" "TE Connectivity"
+			(at 29.21 -598.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Part_Number" "282812-2"
+			(at 29.21 -698.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "1"
+			(uuid "9ac32325-5f20-4508-98cf-d7a418f2af00")
+		)
+		(pin "2"
+			(uuid "a7c23de3-0284-45ce-aecd-149050412299")
+		)
+		(instances
+			(project "KLT120"
+				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -7398,8 +7491,151 @@
 		)
 	)
 	(symbol
+		(lib_id "282812:282812-2")
+		(at 250.19 67.31 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "96517174-b5c9-484c-973c-6d04f714f386")
+		(property "Reference" "J1"
+			(at 255.524 74.2837 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "282812-2"
+			(at 255.524 76.708 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "282812:2828122"
+			(at 266.7 162.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=282812&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=282812-2"
+			(at 266.7 262.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Description" "2 Position PCB Terminal Block, Header, Wire-to-Board, 5 mm [.197 in] Centerline, 1 Row, 300 VAC, Printed Circuit Board, Power & Signal, Board Mount"
+			(at 250.19 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Height" "8.5"
+			(at 266.7 462.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Part Number" "571-282812-2"
+			(at 266.7 562.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/282812-2?qs=tAlKl34sQZuTRLpaTJdQ0A%3D%3D"
+			(at 266.7 662.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Name" "TE Connectivity"
+			(at 266.7 762.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Part_Number" "282812-2"
+			(at 266.7 862.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "1"
+			(uuid "886d65c9-148a-4580-911d-c28afa8281c3")
+		)
+		(pin "2"
+			(uuid "75ed6484-d013-4c14-93c4-fc657647f98d")
+		)
+		(instances
+			(project "KLT120"
+				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
-		(at 44.45 77.47 0)
+		(at 46.99 77.47 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7410,7 +7646,7 @@
 		(fields_autoplaced yes)
 		(uuid "98862c48-7743-43de-981e-ce51f279cf75")
 		(property "Reference" "#PWR029"
-			(at 44.45 81.28 0)
+			(at 46.99 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7421,7 +7657,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 44.45 72.39 0)
+			(at 46.99 72.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7431,7 +7667,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 44.45 77.47 0)
+			(at 46.99 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7442,7 +7678,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 77.47 0)
+			(at 46.99 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7453,7 +7689,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 44.45 77.47 0)
+			(at 46.99 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7508,7 +7744,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 134.62 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -7551,6 +7787,149 @@
 			(project "KLT120"
 				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "282812:282812-2")
+		(at 123.19 163.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a8ca9f62-b81c-463b-ac74-8535f619a802")
+		(property "Reference" "J2"
+			(at 128.27 170.5497 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "282812-2"
+			(at 128.27 172.974 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "282812:2828122"
+			(at 139.7 258.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=282812&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=282812-2"
+			(at 139.7 358.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Description" "2 Position PCB Terminal Block, Header, Wire-to-Board, 5 mm [.197 in] Centerline, 1 Row, 300 VAC, Printed Circuit Board, Power & Signal, Board Mount"
+			(at 123.19 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Height" "8.5"
+			(at 139.7 558.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Part Number" "571-282812-2"
+			(at 139.7 658.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/282812-2?qs=tAlKl34sQZuTRLpaTJdQ0A%3D%3D"
+			(at 139.7 758.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Name" "TE Connectivity"
+			(at 139.7 858.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Manufacturer_Part_Number" "282812-2"
+			(at 139.7 958.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "1"
+			(uuid "5d84895d-bc33-48d0-9238-e421336a2b32")
+		)
+		(pin "2"
+			(uuid "dbfdff09-1254-40de-8f66-a0f978840fb4")
+		)
+		(instances
+			(project "KLT120"
+				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -7947,7 +8326,7 @@
 	)
 	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
-		(at 44.45 40.64 90)
+		(at 46.99 40.64 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7957,7 +8336,7 @@
 		(dnp no)
 		(uuid "bf5174ba-87f2-48e4-a1f9-f3ce4d6e78e2")
 		(property "Reference" "R10"
-			(at 38.354 38.862 90)
+			(at 40.894 38.862 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7968,7 +8347,7 @@
 			)
 		)
 		(property "Value" "4K7"
-			(at 42.926 40.64 90)
+			(at 45.466 40.64 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7978,8 +8357,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
-			(at 44.45 40.64 0)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 46.99 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7990,7 +8369,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 40.64 0)
+			(at 46.99 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8001,7 +8380,7 @@
 			)
 		)
 		(property "Description" "RESISTOR, European symbol"
-			(at 44.45 40.64 0)
+			(at 46.99 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8146,7 +8525,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 123.19 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -8314,7 +8693,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M1206"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 238.76 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -8394,7 +8773,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOP65P640X120-8N"
+		(property "Footprint" "LM393BIPWR:SOP65P640X120-8N"
 			(at 118.11 182.55 0)
 			(hide yes)
 			(show_name no)
@@ -8523,86 +8902,6 @@
 		)
 	)
 	(symbol
-		(lib_id "3_pins:TERMINAL_2PINS")
-		(at 35.56 45.72 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ceb3b3fa-6d12-4466-a0d3-9e14b4dd86c9")
-		(property "Reference" "11"
-			(at 31.496 49.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-			)
-		)
-		(property "Value" ""
-			(at 34.29 55.88 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.778 1.5113)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "3_pins:90-2"
-			(at 35.56 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 35.56 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 35.56 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "dfaf33af-2278-433c-ad74-342b25eb36ff")
-		)
-		(pin "1"
-			(uuid "aa257ac5-b127-4135-8f38-f017e60c2194")
-		)
-		(instances
-			(project "KLT120"
-				(path "/71ded3eb-25ce-4bef-b46d-b648496dc492"
-					(reference "11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
 		(at 215.9 74.93 90)
 		(unit 1)
@@ -8635,7 +8934,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 215.9 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -8685,7 +8984,7 @@
 	)
 	(symbol
 		(lib_id "cap_mult_pins:R-EU_M0805")
-		(at 44.45 86.36 90)
+		(at 46.99 86.36 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8695,7 +8994,7 @@
 		(dnp no)
 		(uuid "d051891b-3342-43e5-ab2f-c9c2f4965ec4")
 		(property "Reference" "R22"
-			(at 38.354 84.582 90)
+			(at 40.894 84.582 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8706,7 +9005,7 @@
 			)
 		)
 		(property "Value" "4K7"
-			(at 42.926 86.36 90)
+			(at 45.466 86.36 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8716,8 +9015,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
-			(at 44.45 86.36 0)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 46.99 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8728,7 +9027,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 86.36 0)
+			(at 46.99 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8739,7 +9038,7 @@
 			)
 		)
 		(property "Description" "RESISTOR, European symbol"
-			(at 44.45 86.36 0)
+			(at 46.99 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8797,7 +9096,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M1206"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 238.76 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -8957,7 +9256,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.7"
 			(at 73.66 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -9038,7 +9337,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 76.2 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -9119,7 +9418,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 134.62 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -9199,7 +9498,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOP65P640X120-8N"
+		(property "Footprint" "LM393BIPWR:SOP65P640X120-8N"
 			(at 118.11 136.83 0)
 			(hide yes)
 			(show_name no)
@@ -9329,7 +9628,7 @@
 	)
 	(symbol
 		(lib_id "Diode:BZV55B16")
-		(at 118.11 170.18 270)
+		(at 114.3 170.18 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9339,7 +9638,7 @@
 		(dnp no)
 		(uuid "ed83ba6e-92a1-468a-9871-bd8449f16083")
 		(property "Reference" "D1"
-			(at 120.65 168.9099 90)
+			(at 116.84 168.9099 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9350,7 +9649,7 @@
 			)
 		)
 		(property "Value" "BZV55B16"
-			(at 114.808 165.354 0)
+			(at 110.998 165.354 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9361,7 +9660,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_MiniMELF"
-			(at 113.665 170.18 0)
+			(at 109.855 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9372,7 +9671,7 @@
 			)
 		)
 		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BZV55_SER.pdf"
-			(at 118.11 170.18 0)
+			(at 114.3 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9383,7 +9682,7 @@
 			)
 		)
 		(property "Description" "16V, 500mW, 2%, Zener diode, MiniMELF"
-			(at 118.11 170.18 0)
+			(at 114.3 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9519,7 +9818,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "cap_mult_pins:M0805"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 231.14 77.47 0)
 			(hide yes)
 			(show_name no)
